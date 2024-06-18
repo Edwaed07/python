@@ -27,7 +27,17 @@ $result = $conn->query($sql);
 
 
 if ($result->num_rows > 0) {
-    echo "<table  class='order-table'> 
+    echo "
+
+    <script>
+        function redirectToNewPage() {
+            // Use the parent object to change the URL of the parent page
+            parent.location.href = 'Add Item Form.html'; // Change to the desired URL
+        }
+    </script>
+    
+    
+    <table  class='order-table'> 
     <tr>
     <th>Item ID</th>
     <th>Category</th>
@@ -35,12 +45,12 @@ if ($result->num_rows > 0) {
     <th>Weight</th>
     <th>Price</th>
     <th>Quantity</th>
+    <th></th>
     <th>
           <a href='../Add Item Form.html'>
-          <button >Add Item</button>
+          <button onclick='redirectToNewPage()' >Add Item</button>
           </a>
     </th>
-    <th></th>
     </tr>"; 
 
     // Output data of each row
