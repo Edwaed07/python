@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
     <script>
         function redirectToNewPage() {
             // Use the parent object to change the URL of the parent page
-            parent.location.href = 'Add Item Form.html'; // Change to the desired URL
+            parent.location.href = '../Add Item Form.html'; // Change to the desired URL
         }
     </script>
     
@@ -47,9 +47,9 @@ if ($result->num_rows > 0) {
     <th>Quantity</th>
     <th></th>
     <th>
-          <a href='../Add Item Form.html'>
+          
           <button onclick='redirectToNewPage()' >Add Item</button>
-          </a>
+          
     </th>
     </tr>"; 
 
