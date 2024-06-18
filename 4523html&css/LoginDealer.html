@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="Login.css" type="text/css">
+</head>
+<body>
+<h2>Dealer Login</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Gender(M/F)" />
+			<input type="email" placeholder="Date of Birth" />
+			<input type="password" placeholder="Email" />
+			<input type="password" placeholder="Phone Number" />
+			<input type="password" placeholder="Address" />
+
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="php/LoginD.php" method="post">
+			<h1>Sign in</h1>
+			<br></br>
+			<input type="email" placeholder="Account" />
+			<input type="password" placeholder="Password" />
+			<br></br>
+	<button onclick="window.location.href='home.html'">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>Already have an account, return to login</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Dealer!</h1>
+				<p>Enter your personal details to create account</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+</script>
+
+</body>
+</form>
+</html>
