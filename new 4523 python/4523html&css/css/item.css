@@ -13,8 +13,8 @@
 
 .order-table {
     width: 100%;
-    
-  
+    border-collapse: collapse;
+    border: none; 
   }
   
   .order-table th, .order-table td {

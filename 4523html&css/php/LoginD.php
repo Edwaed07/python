@@ -1,5 +1,6 @@
 
 <?php
+            echo 'test';
             if(isset($_POST["submit"])){
                 $email = $_POST["email"];
                 $passwd = $_POST["passwd"];
@@ -7,6 +8,7 @@
                 $sql = "SELECT dealerID, password FROM dealer";
                 $rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                 $userExists = false;
+                
                 while($rc = mysqli_fetch_assoc($rs)) {
                     if($rc['dealerID'] == $email){
                         $userExists = true;
@@ -14,7 +16,7 @@
                             session_start();
                             $_SESSION['isLogin'] = 'D';
                             $_SESSION['loginID'] = $email;
-                            header('Location: home.html');
+                            header('Location: ../home.html');
                             mysqli_free_result($rs);
                             mysqli_close($conn);
                             exit();
