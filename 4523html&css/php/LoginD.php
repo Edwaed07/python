@@ -1,7 +1,7 @@
 
 <?php
             echo 'test';
-            if(isset($_POST["submit"])){
+            
                 $email = $_POST["email"];
                 $passwd = $_POST["passwd"];
                 $conn = mysqli_connect('localhost', 'root', '', 'projectdb') or die(mysqli_connect_error());
@@ -28,5 +28,5 @@
                         }
                     }
                 }
-            }
+            
         ?>
