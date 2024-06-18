@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart&Luxury Motor</title>
+<link rel="stylesheet" href="homed.css" type="text/css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="homea.css" type="text/css">
+<link rel="stylesheet" href="Add Item Form.css" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+</head>
+<body class="w3-content" style="max-width:1200px">
+
+<!-- Sidebar/menu -->  
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+<img src="photo/logo.png" class="logo" style="width: 150px; height: auto;margin-bottom: -60px;">
+
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="home.html" class="w3-bar-item w3-button">All</a>
+    <a href="home.html" class="w3-bar-item w3-button">Sheet Metal</a>
+    <a href="home.html" class="w3-bar-item w3-button">Major Assemblies</a>
+    <a href="home.html" class="w3-bar-item w3-button">Light Components</a>
+    <a href="home.html" class="w3-bar-item w3-button">Accessories</a>
+  </div>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br> 
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+  
+<!-- Top header -->
+<header class="w3-container w3-xlarge">
+  <p class="w3-left">Smart & Luxury Motor Company</p>
+  <p class="w3-right">
+
+<a href="staff update.html" style="text-decoration: none;">
+<img src="photo/userin.png" width="32" height="auto">
+</a>
+
+<a href="report.html" style="text-decoration: none;">
+<img src="photo/report.png" width="25" height="25">
+</a>
+
+<a href="item.html" style="text-decoration: none;">
+<img src="photo/stock.png" width="25" height="25">
+</a>
+
+<a href="Sales Order records.html" style="text-decoration: none;">
+<img src="photo/record.png" width="25" height="auto">
+</a>
+
+<a href="#.html" style="text-decoration: none;">
+<img src="photo/logout.png" width="35" height="auto">
+</a>
+
+  </p>
+</header>
+
+
+<body >
+    <div class="container">
+        
+        <h1>Insert Item</h1>
+        <form >
+            <label >Spare Part Number :</label>
+            <input type="text" disabled>
+            <br></br>
+
+            <label >Spare Part Name :</label>
+            <input type="text">
+            <br></br>
+
+
+            <label >Spare Part Category</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="male" required> A</label>
+                <label><input type="radio" name="gender" value="female" required> B</label>
+                <label><input type="radio" name="gender" value="asexual" required> C</label>
+                <label><input type="radio" name="gender" value="female" required> D</label>
+                <label><input type="radio" name="gender" value="asexual" required> E</label>
+            </div>
+            <br></br>
+
+            <label >Spare Part Image :</label>
+            <input type="file">
+            <br></br>
+
+            <label for="">Spare Part Description:</label>
+            <textarea rows="5" cols="50">Enter description here...</textarea> 
+            <br></br>
+
+            <label for="street">Weight:</label>
+            <input type="text" >
+            <br></br>
+
+            <label for="postcode">Stock Item Quantity:</label>
+            <input type="text" >
+            <br></br>
+
+            <label for="join-month">Price:</label>
+            <input type="text" >
+            <br></br>
+
+
+            <br>
+            <br>
+
+    <div class="button-container">
+        <a href="item.html" >
+        <input type="button" value="Cancel" >
+        </a>
+        <input type="reset" value="Clear" >
+        <a href="item.html" >
+        <input type="submit" value="Submit" >
+        </a>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
