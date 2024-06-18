@@ -13,6 +13,18 @@
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </style>
 </head>
+
+
+
+
+<script>
+  function resizeIframe(iframe) {
+      iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 50 +  'px';
+  }
+</script>
+
+
+
 <body class="w3-content" style="max-width:1200px">
 
 <!-- Sidebar/menu -->  
@@ -56,7 +68,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <p class="w3-right">
     
 
-<a href="update.html" style="text-decoration: none;">
+<a href="staff update.html" style="text-decoration: none;">
   <img src="photo/userin.png" width="32" height="auto">
 </a>
 
@@ -79,100 +91,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </p>
   </header>
 
-
   <h1>Sales Order record</h1>
+
+  <iframe src="php/loadSalesOrderRecord.php" width="100%" height="100%" style="border:none"  onload="resizeIframe(this)"></iframe>
+
   
-  <table class="order-table">
-    <thead>
-      <tr>
-        <th>Order ID</th>
-        <th>Sales Manager ID</th>
-        <th>Order Date</th>
-        <th>SP Name</th>
-        <th>Delivery Date</th>
-        <th>Status</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>OR001</td>
-        <td>none</td>
-        <td>5/6</td>
-        <td>Car door</td>
-        <td>25/6</td>
-        <td>none</td>
-        <td>
-          <a href="Update Order Form.html">
-            <button >Update</button>
-          </a>
-        </td>
-        <td>
-          <a href="Order Detail Form.html">
-          <button >Order detail</button>
-          </a>
-        </td>
-      </tr>
   
-      <tr>
-        <td>OR002</td>
-        <td>SM003</td>
-        <td>5/7</td>
-        <td>Seat</td>
-        <td>14/7</td>
-        <td>accepted</td>
-        <td>
-          <a href="Update Order Form.html">
-            <button >Update</button>
-          </a>
-        </td>
-        <td>
-          <a href="Order Detail Form.html">
-          <button >Order detail</button>
-          </a>
-        </td>
-      </tr>
-  
-    <tr>
-      <td>OR003</td>
-      <td>SM001</td>
-      <td>20/5</td>
-      <td>Car light</td>
-      <td>5/6</td>
-      <td>accepted</td>
-      <td>
-        <a href="Update Order Form.html">
-          <button >Update</button>
-        </a>
-      </td>
-      <td>
-        <a href="Order Detail Form.html">
-        <button >Order detail</button>
-        </a>
-      </td>
-    </tr>
-  
-    <tr>
-      <td>OR004</td>
-      <td>SM005</td>
-      <td>3/8</td>
-      <td>Floor mats</td>
-      <td>25/6</td>
-      <td>rejected</td>
-      <td>
-        <a href="Update Order Form.html">
-          <button >Update</button>
-        </a>
-      </td>
-      <td>
-        <a href="Order Detail Form.html">
-        <button >Order detail</button>
-        </a>
-      </td>
-    </tr>
-  
-    </tbody>
 
 
 </body>
