@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Display Items</title>
+
     <link rel="stylesheet" type="text/css" href="../css/Sales Order records.css">
-</head>
+
 
 <?php
 
@@ -28,8 +27,17 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "
-    
-    
+    <script>
+    function updateOrder(OrderID) { 
+            window.location.href = 'updateSalesOrderRecord.php?OrderID=' + OrderID;
+        }
+
+    function orderDetail(OrderID) { 
+        window.location.href = 'OrderDetail.php?OrderID=' + OrderID;
+    }
+
+    </script>
+
     <table  class='order-table'> 
     <tr>
     <th>Order ID</th>
@@ -52,10 +60,10 @@ if ($result->num_rows > 0) {
         <td>".$row["deliveryDate"]."</td>
         <td>".$row["orderStatus"]."</td>
         <td>
-          <button >Update</button>
+          <button onclick='updateOrder(".$row["orderID"].")'>Update</button>
         </td>
         <td>
-          <button >Order detail</button>
+          <button onclick='orderDetail(".$row["orderID"].")'>Order detail</button>
         </td>
         </tr>";
     }

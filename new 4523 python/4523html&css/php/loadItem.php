@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Display Items</title>
+
     <link rel="stylesheet" type="text/css" href="../css/item.css">
-</head>
 
 <?php
 
