@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="homea.css" type="text/css">
-<link rel="stylesheet" href="Add Item Form.css" type="text/css">
+<link rel="stylesheet" href="php/Add Item Form.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .w3-sidebar a {font-family: "Roboto", sans-serif}
@@ -77,66 +77,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </header>
 
 
-<body >
-    <div class="container">
-        
-        <h1>Insert Item</h1>
-        <form >
-            <label >Spare Part Number :</label>
-            <input type="text" disabled>
-            <br></br>
+<body>
 
-            <label >Spare Part Name :</label>
-            <input type="text">
-            <br></br>
-
-
-            <label >Spare Part Category</label>
-            <div class="radio-group">
-                <label><input type="radio" name="gender" value="male" required> A</label>
-                <label><input type="radio" name="gender" value="female" required> B</label>
-                <label><input type="radio" name="gender" value="asexual" required> C</label>
-                <label><input type="radio" name="gender" value="female" required> D</label>
-                <label><input type="radio" name="gender" value="asexual" required> E</label>
-            </div>
-            <br></br>
-
-            <label >Spare Part Image :</label>
-            <input type="file">
-            <br></br>
-
-            <label for="">Spare Part Description:</label>
-            <textarea rows="5" cols="50">Enter description here...</textarea> 
-            <br></br>
-
-            <label for="street">Weight:</label>
-            <input type="text" >
-            <br></br>
-
-            <label for="postcode">Stock Item Quantity:</label>
-            <input type="text" >
-            <br></br>
-
-            <label for="join-month">Price:</label>
-            <input type="text" >
-            <br></br>
-
-
-            <br>
-            <br>
-
-    <div class="button-container">
-        <a href="item.html" >
-        <input type="button" value="Cancel" >
-        </a>
-        <input type="reset" value="Clear" >
-        <a href="item.html" >
-        <input type="submit" value="Submit" >
-        </a>
-    </div>
+    <iframe src="php/addItem.php" width="100%" height="1100px" style="border: none;"></iframe>
+    
 
 
 
-    <script src="script.js"></script>
+   
 </body>
 </html>
