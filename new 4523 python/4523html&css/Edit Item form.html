@@ -7,12 +7,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="homea.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="Edit Item form.css" type="text/css">
+<link rel="stylesheet" href="css/Edit Item form.css" type="text/css">
 <style>
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </style>
 </head>
+
+
+<script>
+  function resizeIframe(iframe) {
+      iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 50 +  'px';
+  }
+</script>
+
+
+
+
 <body class="w3-content" style="max-width:1200px">
 
 <!-- Sidebar/menu -->  
@@ -20,11 +31,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <img src="photo/logo.png" class="logo" style="width: 150px; height: auto;margin-bottom: -60px;">
 
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="home.html" class="w3-bar-item w3-button">All</a>
-    <a href="home.html" class="w3-bar-item w3-button">Sheet Metal</a>
-    <a href="home.html" class="w3-bar-item w3-button">Major Assemblies</a>
-    <a href="home.html" class="w3-bar-item w3-button">Light Components</a>
-    <a href="home.html" class="w3-bar-item w3-button">Accessories</a>
+    <a href="staff home.html" class="w3-bar-item w3-button">All</a>
+    <a href="staff home.html" class="w3-bar-item w3-button">Sheet Metal</a>
+    <a href="staff home.html" class="w3-bar-item w3-button">Major Assemblies</a>
+    <a href="staff home.html" class="w3-bar-item w3-button">Light Components</a>
+    <a href="staff home.html" class="w3-bar-item w3-button">Accessories</a>
   </div>
   <br></br>
   <br></br>
@@ -78,8 +89,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
     <div class="container">
+
+      <iframe src="php/updateItem.php" width="100%" height="100%" style="border:none"  onload="resizeIframe(this)"></iframe>
         <h1>Edit item : A001</h1>
-        <form >
+        <form method="post" >
+
             
             <label >New Spare Part Image :</label>
             <input type="file" id="img" name="img" required>
@@ -113,6 +127,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
 
 
-    <script src="script.js"></script>
+
 </body>
 </html>

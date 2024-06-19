@@ -31,8 +31,7 @@ if ($result->num_rows > 0) {
 
     <script>
         function redirectToNewPage() {
-            // Use the parent object to change the URL of the parent page
-            parent.location.href = '../Add Item Form.html'; // Change to the desired URL
+            parent.location.href = '../Add Item Form.html';
         }
 
         function deleteItem(sparePartNum) { 
@@ -50,6 +49,10 @@ if ($result->num_rows > 0) {
 
                xhr.send('sparePartNum=' + sparePartNum);
            }
+        }
+
+        function editItem(sparePartNum) { 
+            window.location.href = 'editItem.php?sparePartNum=' + sparePartNum;
         }
    
     </script>
@@ -84,9 +87,7 @@ if ($result->num_rows > 0) {
           <button onclick='deleteItem(".$row["sparePartNum"].")'>Delete</button>
         </td>
         <td>
-          <a href='Edit Item form.html'>
-          <button >Edit item</button>
-          </a>
+          <button onclick='editItem(".$row["sparePartNum"].")'>Edit item</button>
         </td>
         </tr>";
     }

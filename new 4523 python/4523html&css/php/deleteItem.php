@@ -52,13 +52,10 @@
 
         }
 
-      
-
-      
-
        // Close connection
        $stmt->close();
        $conn->close();
+       
    }
 
 ?>
