@@ -8,7 +8,7 @@
         $username = "root";
         $password = "";
         $dbname = "projectdb";
-        abc
+        
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
             
