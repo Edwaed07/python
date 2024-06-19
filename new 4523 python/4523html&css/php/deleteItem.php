@@ -17,24 +17,48 @@
            die("Connection failed: " . $conn->connect_error);
        }
 
+    
+        $checksql = "SELECT sparePartNum FROM ordersitem ";
+        $result = $conn->query($checksql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                if( $sparePartNum == $row["sparePartNum"]){
+                    echo "The item is relate to order record, fail to delete item";
+                    $result->close();
+                    $conn->close();
+                    return;
+                }
+
+
+            }
+
+        }else {
+            echo "Error: " . $result->error;
+        }
+        
+    
        // SQL query to delete the item
-       $sql = "DELETE FROM your_table_name WHERE sparePartNum = ?";
+       $sql = "DELETE FROM item WHERE sparePartNum = ?";
        
        // Prepare statement
        $stmt = $conn->prepare($sql);
        $stmt->bind_param('s', $sparePartNum);
-
-       // Execute the statement
        if ($stmt->execute()) {
-           echo "Item deleted successfully";
-       } else {
-           echo "Error deleting item: " . $conn->error;
-       }
+          echo "delete successed";
+         
+        }else{
+
+          echo"Error deleting item: " . $stmt->error;
+
+        }
+
+      
+
+      
 
        // Close connection
        $stmt->close();
        $conn->close();
-   } else {
-       echo "No item ID provided";
    }
-   ?>
+
+?>

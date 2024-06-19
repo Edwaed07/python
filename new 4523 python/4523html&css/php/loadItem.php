@@ -34,6 +34,24 @@ if ($result->num_rows > 0) {
             // Use the parent object to change the URL of the parent page
             parent.location.href = '../Add Item Form.html'; // Change to the desired URL
         }
+
+        function deleteItem(sparePartNum) { 
+           if (confirm('Are you sure you want to delete this item?')) {
+               var xhr = new XMLHttpRequest();
+               xhr.open('POST', 'deleteItem.php', true);
+               xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+               xhr.onreadystatechange = function () {
+                   if (xhr.readyState == 4 && xhr.status == 200) {
+                       alert(xhr.responseText);
+                       location.reload(); // Reload the page to reflect the changes
+                   }
+               };
+
+               xhr.send('sparePartNum=' + sparePartNum);
+           }
+        }
+   
     </script>
     
     
@@ -63,7 +81,7 @@ if ($result->num_rows > 0) {
         <td>".$row["price"]."</td>
         <td>".$row["stockItemQty"]."</td>
         <td>
-          <button >Delete</button>
+          <button onclick='deleteItem(".$row["sparePartNum"].")'>Delete</button>
         </td>
         <td>
           <a href='Edit Item form.html'>
