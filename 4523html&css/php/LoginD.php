@@ -1,16 +1,16 @@
 
 <?php
-            echo 'test';
+            
             
                 $email = $_POST["email"];
                 $passwd = $_POST["passwd"];
                 $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
-                $sql = "SELECT * FROM dealer where dealerID = '".$email."' and password ='".$passwd"'";
+                $sql = "SELECT COUNT(*) FROM dealer where dealerID = '".$email."' and password ='".$passwd"'";
                 
                 $rs = $conn->query($sql);
-                if ($result->num_rows > 0) {
+                if ($rs > 0) {
                     echo"alert='login success'";
-                    
+
                     mysqli_close($conn);
                 }
                
