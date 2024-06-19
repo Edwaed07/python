@@ -4,14 +4,19 @@
             
                 $email = $_POST["email"];
                 $passwd = $_POST["passwd"];
-                $conn = mysqli_connect('localhost', 'root', '', 'projectdb') or die(mysqli_connect_error());
-                $sql = "SELECT dealerID, password FROM dealer";
-                $rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                $userExists = false;
+                $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
+                $sql = "SELECT * FROM dealer where dealerID = '".$email."' and password ='".$passwd"'";
+                
+                $rs = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    echo"alert='login success'";
+                    
+                    mysqli_close($conn);
+                }
+               
                 
                 while($rc = mysqli_fetch_assoc($rs)) {
                     if($rc['dealerID'] == $email){
-                        $userExists = true;
                         if($rc['password'] == $passwd){
                             session_start();
                             $_SESSION['isLogin'] = 'D';
