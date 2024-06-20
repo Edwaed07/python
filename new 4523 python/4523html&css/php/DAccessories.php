@@ -28,8 +28,8 @@
 
 .flex-item b {
     display: block;
-    min-height: 3em; 
-    margin-bottom: -1.5em;
+    min-height: 3em;
+    margin-bottom: -1.5em; 
 }
 
 .flex-item:nth-child(4n+1) {
@@ -51,8 +51,8 @@
 			 var element = document.getElementById("Past");
 			 element.scrollIntoView({ behavior: "smooth" });
 			}
-			</script> 
-			<a class="w3-bar-item w3-button"  onclick="scrollTo20Items();">All</a> <br>
+			</script>
+			<a class="w3-bar-item w3-button" href="../php/home.php">All</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/ASheetMetal.php">Sheet Metal</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/BMajorAssemblies.php">Major Assemblies</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/CLightComponents.php"">Light Components</a> <br>
@@ -104,56 +104,42 @@
 		<!-- Image header -->
 
 
-		<div class="w3-display-container w3-container">
-		<img alt="Image1" class="car1" id="slideshow" src="../photo/car1.jpg" style="width:100%">
-		</div>
-		<script>
-		var images = ["../photo/car1.jpg", "../photo/car2.jpg", "../photo/car3.jpg"];
-		var currentIndex = 0;
-		var slideshow = document.getElementById("slideshow");
-
-		function changeImage() {
-		  slideshow.src = images[currentIndex];
-		  currentIndex = (currentIndex + 1) % images.length;
-		}
-
-		setInterval(changeImage, 4000);
-		</script><br>
 		<br>
 
 		<div class="w3-container w3-text-grey" id="Past">
-			<p>20 items</p>
+			<p>5 items</p>
 		</div>
 		<div class="w3-row w3-grayscale">
 		<!-- Product grid -->
 
 		<div class="flex-container">
-    <?php
-        // Connect to the database
-        $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
+		<?php
+    // Connect to the database
+    $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
 
-        // Execute the SQL query
-        $sql = "SELECT * FROM item";
-        $result = mysqli_query($conn, $sql);
+    // Execute the SQL query to select records where sparePartImage starts with '1'
+    $sql = "SELECT * FROM item WHERE sparePartImage LIKE '4%'";
+    $result = mysqli_query($conn, $sql);
 
-        // Loop through the query results
-        while ($row = mysqli_fetch_assoc($result)) {
-            $img = $row['sparePartImage'];
-			$path = "../sample images/";
-            echo '<div class="flex-item">
-                <img src="' . $path . $img . '.png" style="width:150px; height:150px">
-                <br>
-                <b>' . $row['sparePartName'] . '</b><br>
-                <span>$' . $row['price'] . '</span><br>
-                <input type="number" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">
-                <button id="addToCartBtn" style="background-color: #007bff; color: white; width: 120px; height: 25px;">Add to cart</button>
-                <br><br/>
-            </div>';
-        }
+    // Loop through the query results
+    while ($row = mysqli_fetch_assoc($result)) {
+        $img = $row['sparePartImage'];
+        $path = "../sample images/";
+        echo '<div class="flex-item">
+            <img src="' . $path . $img . '.png" style="width:150px; height:150px">
+            <br>
+            <b>' . $row['sparePartName'] . '</b><br>
+            <span>$' . $row['price'] . '</span><br>
+            <input type="number" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">
+            <button id="addToCartBtn" style="background-color: #007bff; color: white; width: 120px; height: 25px;">Add to cart</button>
+            <br><br/>
+        </div>';
+    }
 
-        // Close the database connection
-        mysqli_close($conn);
-    ?>
+    // Close the database connection
+    mysqli_close($conn);
+?>
+
 </div>
 		
 		<!-- Footer -->
