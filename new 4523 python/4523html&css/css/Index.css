@@ -1,0 +1,58 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 1200px;
+}
+
+header {
+	background: url('photo/wallpaper.jpg');
+	text-align: center;
+	width: 100%;
+	height: auto;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+	border-radius: 0 0 85% 70% / 40%;
+}
+
+header .overlay {
+	width: 100%;
+	height: 100%;
+	padding: 250px;
+	color: #ECEEE9;
+	text-shadow: 1px 1px 1px #333;
+	background-image: linear-gradient( 220deg, #ECEEE9 3%, #fd5e086b 60%);
+}
+
+h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: 70px;
+	margin-bottom: 0px;
+	margin-top: -60px;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+}
+
+.button {
+	border: none;
+	outline: none;
+	border-radius: 50px;
+	color: #ECEEE9;
+	background: #525866;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+	padding: 20px 30px;
+	font-size: 28px;
+	margin-left: 220px;
+	margin-right: 220px;
+}
