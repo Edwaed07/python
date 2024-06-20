@@ -10,7 +10,7 @@
     $count = mysqli_fetch_array($rs)[0];
     if ($count >= 1) {
         // Redirect to home.html
-        header("Location: ../home.html");
+        header("Location: ../home.php");
         exit();
     } else {
         echo "Error email or password";
