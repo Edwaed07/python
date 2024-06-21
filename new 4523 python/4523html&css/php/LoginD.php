@@ -9,10 +9,12 @@
     $rs = $conn->query($sql);
     $count = mysqli_fetch_array($rs)[0];
     if ($count >= 1) {
+        setcookie("dealerName", $email, time() + 7200);
         // Redirect to home.html
-        header("Location: ../php/home.php");
+        header("Location: home.php");
         exit();
     } else {
+        echo ''.$email.' '.$passwd;
         echo "Error email or password";
     }
     mysqli_close($conn);

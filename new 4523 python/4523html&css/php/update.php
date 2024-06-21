@@ -4,12 +4,12 @@
 
 <head>
 	<title>Dealer's Information</title>
-	<link href="updatea.css" rel="stylesheet" type="text/css">
+	<link href="../css/update.css" rel="stylesheet" type="text/css">
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<link href="homea.css" rel="stylesheet" type="text/css">
-	<link href="homeb.css" rel="stylesheet" type="text/css">
-	<link href="homec.css" rel="stylesheet" type="text/css">
+	<link href="../css/homea.css" rel="stylesheet" type="text/css">
+	<link href="../css/homeb.css" rel="stylesheet" type="text/css">
+	<link href="../css/homec.css" rel="stylesheet" type="text/css">
 	<style>
 		.w3-sidebar a {
 			font-family: "Roboto", sans-serif
@@ -38,12 +38,12 @@
 
 
 		<div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-			<img alt="User Icon" src="photo/user.png" width="190px"><br>
+			<img alt="User Icon" src="../photo/user.png" width="190px"><br>
 			<br>
 			<?php
 			$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
 			session_start();
-			$dealerID = $_SESSION['loginID'];
+			$dealerID = $_COOKIE['dealerName'];
 
 			$sql = "SELECT dealerName, contactName, contactNumber ,faxNumber FROM dealer WHERE dealerID = '$dealerID'";
 			$result = mysqli_query($conn, $sql);
@@ -89,18 +89,18 @@
 
 
 		<header class="w3-container w3-xlarge">
-			<a href="home.html" style="text-decoration: none;"><img class="logo" src="photo/logo.png"
+			<a href="home.html" style="text-decoration: none;"><img class="logo" src="../photo/logo.png"
 					style="width: 88px; height: auto; float: left; margin-right: 10px;margin-left: 10px;"></a>
 
 			<p class="w3-left">Smart & Luxury Motor Company</p>
 
 
 			<p class="w3-right"><a href="update.php" style="text-decoration: none;"><img height="auto"
-						src="photo/userin.png" width="32"></a> <a href="shoppinglist.html"
-					style="text-decoration: none;"><img height="auto" src="photo/list.png" width="35"></a> <a
-					href="order%20record.html" style="text-decoration: none;"><img height="auto" src="photo/record.png"
+						src="../photo/userin.png" width="32"></a> <a href="shoppinglist.html"
+					style="text-decoration: none;"><img height="auto" src="../photo/list.png" width="35"></a> <a
+					href="order%20record.html" style="text-decoration: none;"><img height="auto" src="../photo/record.png"
 						width="25"></a> <a href="Index.html" style="text-decoration: none;"><img height="auto"
-						src="photo/logout.png" width="35"></a></p>
+						src="../photo/logout.png" width="35"></a></p>
 		</header>
 
 

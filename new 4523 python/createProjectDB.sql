@@ -35,7 +35,7 @@ CREATE TABLE Dealer (
 INSERT INTO Dealer (dealerID, password, dealerName, contactName, contactNumber, faxNumber, deliveryAddress) VALUES 
 ('alex@auto-racing.com', 'itp4235m', 'Auto Racing', 'Alex Wong', 21232123, 22223333, 'G/F, ABC Building, King Yip Street, KwunTong, Kowloon, Hong Kong'),
 ('tina@good-service.com', 'itp4235m', 'Good Service', 'Tina Chan', 31233123, 33334444, '303, Mei Hing Center, Yuen Long, NT, Hong Kong'),
-('bowie＠car-care.com', 'itp4235m', 'Car Care', 'Bowie', 61236123, 31112222, '401, Sing Kei Building, Kowloon, Hong Kong');
+('bowie@car-care.com', 'itp4235m', 'Car Care', 'Bowie', 61236123, 31112222, '401, Sing Kei Building, Kowloon, Hong Kong');
 
 DROP TABLE IF EXISTS SalesManager;
 
@@ -81,25 +81,25 @@ CREATE TABLE Item (
 --
 INSERT INTO Item (sparePartNum, sparePartCategory, sparePartName, sparePartImage, sparePartDescription, weight, stockItemQty, price) VALUES 
 (1, 1, 'Vehicle Firewall (Lower Front Section)', '100001.jpg', 'This robust barrier is constructed from high-grade, heat-resistant materials that prevent engine heat, noise, and potential hazards from reaching the interior of the vehicle. ', 70, 3, 5000),
-(2, 1, 'Front Left Door (Unpainted) (Outside)', '100002.jpg', 'Front left door replacement for various vehicle models.Crafted from high-quality, durable materials, this door is designed to provide the structural integrity and fit of an OEM part.', 30, 0, 3500),
-(3, 2, 'AC Compressor Bump', '200001.jpg', 'Our Complete Cooling System Kit is your one-stop solution for overhauling your vehicles cooling system. This comprehensive kit includes everything from the radiator to the thermostat, ensuring your engine stays cool under any driving conditions. ', 30, 3, 6000),
-(4, 2, 'Engine Rebuild Kit', '200002.jpg', 'This kit is meticulously assembled to support a complete overhaul of your vehicles power plant, ensuring that it runs as smoothly and efficiently as the day you first turned the key. ', 100, 0, 10000),
-(5, 3, 'Headlight Bulb Replacement', '300001.jpg', 'Illuminate the road ahead with superior brightness by upgrading to our Premium Headlight Bulbs. Engineered for maximum visibility and clarity.', 1, 3, 500),
-(6, 3, 'Ultra-Bright Vertical Truck Rear Lamp', '300002.jpg', 'Elevate the safety and style of your truck with our Ultra-Bright Vertical Truck Rear Lamp Assembly. Designed to fit a variety of commercial trucks, trailers, and heavy-duty vehicles.', 10, 0, 1000),
-(7, 4, 'Tire Pressure Monitoring System (TPMS)', '400001.jpg', 'Designed to provide real-time tire pressure information, these sensors help you maintain proper tire inflation.', 50, 3, 1000),
-(8, 4, '12V Single USB Car Charger', '400002.jpg', 'Keep your devices powered up while on the move with the CompactDrive 12V Single USB Car Charger. ', 10, 0, 100),
-(9, 1, 'Front Left Door (Inside)', '100003.jpg', 'The inner door panel is a critical component that covers the interior part of the door and houses various functional elements like the handle, controls for windows and locks.', 10, 10, 3000),
-(10, 1, 'Engine Hood Cover Replacement', '100004.jpg', 'Replace your worn or damaged engine hood cover with our Premium Engine Hood Cover Replacement. ', 30, 10, 4000),
-(11, 1, 'Trunk Door Panel', '100005.jpg', 'Our custom trunk door panel replacement is designed to fit the specific contours and style of your vehicles trunk door.', 30, 10, 4000);
-(12, 2, 'Autoline Parts', '200003.jpg', 'High-quality engine components for various models', 5.5, 170, 2330),
-(13, 2, 'Calipers and Brackets', '200004.jpg', 'Precision brake calipers and mounting brackets', 7.2, 15, 1160),
-(14, 2, 'Air Compressor', '200005.jpg', 'Compact and efficient air compressor for tire inflation', 1.43, 0, 1945),
-(15, 3, 'Headlight', '300003.jpg', 'Durable and bright headlight for improved visibility', 3.1, 70, 583),
-(16, 3, 'Dome Light', '300004.jpg', 'LED dome light for interior illumination', 0.5, 80, 155),
-(17, 3, 'Headlights for Tesla X', '300005.jpg', 'Custom-designed headlights for Tesla Model X', 2.9, 80, 3888),
-(18, 4, 'Full Car Cover', '400003.jpg', 'Waterproof and UV-resistant car cover for all seasons', 2.5, 120, 692),
-(19, 4, 'Car Wireless Charger', '400004.jpg', 'Convenient wireless charger for vehicles', 0.3, 250, 388),
-(20, 4, 'Phone Mount', '400005.jpg', 'Adjustable and secure phone mount for cars', 0.15, 400, 99);
+(2, 1, 'Front Left Door (Unpainted) (Outside)', '100002.png', 'Front left door replacement for various vehicle models.Crafted from high-quality, durable materials, this door is designed to provide the structural integrity and fit of an OEM part.', 30, 0, 3500),
+(3, 2, 'AC Compressor Bump', '200001.png', 'Our Complete Cooling System Kit is your one-stop solution for overhauling your vehicles cooling system. This comprehensive kit includes everything from the radiator to the thermostat, ensuring your engine stays cool under any driving conditions. ', 30, 3, 6000),
+(4, 2, 'Engine Rebuild Kit', '200002.png', 'This kit is meticulously assembled to support a complete overhaul of your vehicles power plant, ensuring that it runs as smoothly and efficiently as the day you first turned the key. ', 100, 0, 10000),
+(5, 3, 'Headlight Bulb Replacement', '300001.png', 'Illuminate the road ahead with superior brightness by upgrading to our Premium Headlight Bulbs. Engineered for maximum visibility and clarity.', 1, 3, 500),
+(6, 3, 'Ultra-Bright Vertical Truck Rear Lamp', '300002.png', 'Elevate the safety and style of your truck with our Ultra-Bright Vertical Truck Rear Lamp Assembly. Designed to fit a variety of commercial trucks, trailers, and heavy-duty vehicles.', 10, 0, 1000),
+(7, 4, 'Tire Pressure Monitoring System (TPMS)', '400001.png', 'Designed to provide real-time tire pressure information, these sensors help you maintain proper tire inflation.', 50, 3, 1000),
+(8, 4, '12V Single USB Car Charger', '400002.png', 'Keep your devices powered up while on the move with the CompactDrive 12V Single USB Car Charger. ', 10, 0, 100),
+(9, 1, 'Front Left Door (Inside)', '100003.png', 'The inner door panel is a critical component that covers the interior part of the door and houses various functional elements like the handle, controls for windows and locks.', 10, 10, 3000),
+(10, 1, 'Engine Hood Cover Replacement', '100004.png', 'Replace your worn or damaged engine hood cover with our Premium Engine Hood Cover Replacement. ', 30, 10, 4000),
+(11, 1, 'Trunk Door Panel', '100005.png', 'Our custom trunk door panel replacement is designed to fit the specific contours and style of your vehicles trunk door.', 30, 10, 4000),
+(12, 2, 'Autoline Parts', '200003.png', 'High-quality engine components for various models', 5.5, 170, 2330),
+(13, 2, 'Calipers and Brackets', '200004.png', 'Precision brake calipers and mounting brackets', 7.2, 15, 1160),
+(14, 2, 'Air Compressor', '200005.png', 'Compact and efficient air compressor for tire inflation', 1.43, 0, 1945),
+(15, 3, 'Headlight', '300003.png', 'Durable and bright headlight for improved visibility', 3.1, 70, 583),
+(16, 3, 'Dome Light', '300004.png', 'LED dome light for interior illumination', 0.5, 80, 155),
+(17, 3, 'Headlights for Tesla X', '300005.png', 'Custom-designed headlights for Tesla Model X', 2.9, 80, 3888),
+(18, 4, 'Full Car Cover', '400003.png', 'Waterproof and UV-resistant car cover for all seasons', 2.5, 120, 692),
+(19, 4, 'Car Wireless Charger', '400004.png', 'Convenient wireless charger for vehicles', 0.3, 250, 388),
+(20, 4, 'Phone Mount', '400005.png', 'Adjustable and secure phone mount for cars', 0.15, 400, 99);
 
 -- --------------------------------------------------------
 
