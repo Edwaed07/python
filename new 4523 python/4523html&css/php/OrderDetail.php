@@ -71,7 +71,7 @@ $SalesManagerNumber = $column["contactNumber"];
 
 <div class="container">
         
-        <h1>Update Order</h1>
+        <h1>Order Detail</h1>
         <form>
             <label >Order ID :</label>
             <input type="text" name="OrderID" value="<?php echo $OrderID?>" readonly>
