@@ -91,8 +91,17 @@ INSERT INTO Item (sparePartNum, sparePartCategory, sparePartName, sparePartImage
 (9, 1, 'Front Left Door (Inside)', '100003.jpg', 'The inner door panel is a critical component that covers the interior part of the door and houses various functional elements like the handle, controls for windows and locks.', 10, 10, 3000),
 (10, 1, 'Engine Hood Cover Replacement', '100004.jpg', 'Replace your worn or damaged engine hood cover with our Premium Engine Hood Cover Replacement. ', 30, 10, 4000),
 (11, 1, 'Trunk Door Panel', '100005.jpg', 'Our custom trunk door panel replacement is designed to fit the specific contours and style of your vehicles trunk door.', 30, 10, 4000);
+(12, 2, 'Autoline Parts', '200003.jpg', 'High-quality engine components for various models', 5.5, 170, 2330),
+(13, 2, 'Calipers and Brackets', '200004.jpg', 'Precision brake calipers and mounting brackets', 7.2, 15, 1160),
+(14, 2, 'Air Compressor', '200005.jpg', 'Compact and efficient air compressor for tire inflation', 1.43, 0, 1945),
+(15, 3, 'Headlight', '300003.jpg', 'Durable and bright headlight for improved visibility', 3.1, 70, 583),
+(16, 3, 'Dome Light', '300004.jpg', 'LED dome light for interior illumination', 0.5, 80, 155),
+(17, 3, 'Headlights for Tesla X', '300005.jpg', 'Custom-designed headlights for Tesla Model X', 2.9, 80, 3888),
+(18, 4, 'Full Car Cover', '400003.jpg', 'Waterproof and UV-resistant car cover for all seasons', 2.5, 120, 692),
+(19, 4, 'Car Wireless Charger', '400004.jpg', 'Convenient wireless charger for vehicles', 0.3, 250, 388),
+(20, 4, 'Phone Mount', '400005.jpg', 'Adjustable and secure phone mount for cars', 0.15, 400, 99);
 
-DROP TABLE IF EXISTS Orders;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `Orders`
