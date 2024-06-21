@@ -89,7 +89,7 @@
 
 
 		<header class="w3-container w3-xlarge">
-			<a href="home.html" style="text-decoration: none;"><img class="logo" src="../photo/logo.png"
+			<a href="home.php" style="text-decoration: none;"><img class="logo" src="../photo/logo.png"
 					style="width: 88px; height: auto; float: left; margin-right: 10px;margin-left: 10px;"></a>
 
 			<p class="w3-left">Smart & Luxury Motor Company</p>
@@ -98,8 +98,9 @@
 			<p class="w3-right"><a href="update.php" style="text-decoration: none;"><img height="auto"
 						src="../photo/userin.png" width="32"></a> <a href="shoppinglist.html"
 					style="text-decoration: none;"><img height="auto" src="../photo/list.png" width="35"></a> <a
-					href="order%20record.html" style="text-decoration: none;"><img height="auto" src="../photo/record.png"
-						width="25"></a> <a href="Index.html" style="text-decoration: none;"><img height="auto"
+					href="../order record.html" style="text-decoration: none;"><img height="auto" src="../photo/record.png"
+						width="25"></a> 
+					<a href="logout.php" style="text-decoration: none;"><img height="auto"
 						src="../photo/logout.png" width="35"></a></p>
 		</header>
 

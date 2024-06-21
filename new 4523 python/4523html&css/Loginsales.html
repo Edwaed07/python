@@ -22,13 +22,13 @@
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form action="php/LoginS.php" method="post">
 			<h1>Sign in</h1>
 			<br></br>
-			<input type="email" placeholder="Account" />
-			<input type="password" placeholder="Password" />
+			<input type="email" placeholder="Account" name="email" />
+			<input type="password" placeholder="Password" name="passwd" />
 			<br></br>
-	<button onclick="window.location.href='home.html'">Sign In</button>
+			<input type="submit" name="submit" value="Sign in">
 		</form>
 	</div>
 	<div class="overlay-container">
