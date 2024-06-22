@@ -43,7 +43,7 @@
 			<?php
 			$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
 			session_start();
-			$dealerID = $_COOKIE['dealerName'];
+			$dealerID = $_COOKIE['DealerID'];
 
 			$sql = "SELECT dealerName, contactName, contactNumber ,faxNumber FROM dealer WHERE dealerID = '$dealerID'";
 			$result = mysqli_query($conn, $sql);

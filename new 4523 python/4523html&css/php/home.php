@@ -39,6 +39,30 @@
     </style>
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+	
+	function createOrAddToOrder(sparePartNum, item) {
+        var quantity = document.getElementById(item + 'quantity').value;
+
+        $.ajax({
+            url: 'createOrAddToOrder.php', 
+            type: 'POST',
+            data: {
+                sparePartNum: sparePartNum,
+                quantity: quantity
+            },
+            success: function(response) {
+                console.log('Success:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+</script>
+
 <body class="w3-content" style="max-width:1200px">
 	<!-- Sidebar/menu -->
 
@@ -55,7 +79,7 @@
 			<a class="w3-bar-item w3-button"  onclick="scrollTo20Items();">All</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/ASheetMetal.php">Sheet Metal</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/BMajorAssemblies.php">Major Assemblies</a> <br>
-			<a class="w3-bar-item w3-button" href="../php/CLightComponents.php"">Light Components</a> <br>
+			<a class="w3-bar-item w3-button" href="../php/CLightComponents.php">Light Components</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/DAccessories.php">Accessories</a>
 		</div>
 	</nav>
@@ -94,7 +118,7 @@
 			<i class="fa fa-search"></i> 
 				<a href="update.php" style="text-decoration: none;">
 					<img height="auto" src="../photo/userin.png" width="32"></a> 
-				<a href="shoppinglist.html" style="text-decoration: none;">
+				<a href="../carlist.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/list.png" width="35"></a> 
 				<a href="order%20record.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/record.png" width="25"></a> 
@@ -135,22 +159,25 @@
         // Execute the SQL query
         $sql = "SELECT * FROM item";
         $result = mysqli_query($conn, $sql);
+		$item = 0;
 
         // Loop through the query results
         while ($row = mysqli_fetch_assoc($result)) {
             $img = $row['sparePartImage'];
 			$path = "../sample images/";
-            echo '<div class="flex-item">
-                <img src="' . $path . $img . '" style="width:165px; height:150px">
-                <br>
-                <b>' . $row['sparePartName'] . '</b><br>
-                <span>$' . $row['price'] . '</span><br>
-                <input type="number" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">
-                <button id="addToCartBtn" style="background-color: #007bff; color: white; width: 120px; height: 25px;">Add to cart</button>
-                <br><br/>
-            </div>';
+			$item ++ ;
+			$sparePartNum = $row['sparePartNum'];
+			echo '<div class="flex-item">
+			<img src="' . $path . $img . '" style="width:165px; height:150px">
+			<br>
+			<b>' . $row['sparePartName'] . '</b><br>
+			<span>$' . $row['price'] . '</span><br>
+			<input type="number" id="' . $item . 'quantity" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">
+			<button id="addToCartBtn' . $item . '" style="background-color: #007bff; color: white; width: 120px; height: 25px;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
+			<br><br/>
+		</div>';
         }
-
+		
         // Close the database connection
         mysqli_close($conn);
     ?>

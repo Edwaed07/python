@@ -37,10 +37,12 @@
     
             if ($itemResult->num_rows > 0) {
                 $itemRow = $itemResult->fetch_assoc();
+                $img = $itemRow['sparePartImage'];
+			          $path = "../sample images/";
                 echo "
                 
                         <tr>
-                            <td><img src=../sample images".$itemRow['sparePartImage']." style='width:50px; height:50px'></td>
+                            <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
                             <td>" . $itemRow["sparePartNum"] . "</td>
                             <td>" . $itemRow["sparePartName"] . "</td>
                             <td>" . $Qty . "</td>
@@ -76,64 +78,5 @@
 <link rel="stylesheet" href="../css/report.css" type="text/css">
 
 
-<body>
 
-<h1>Report</h1> 
-  
-  <table class="order-table">
-    <thead>
-      <tr>
-        <th >Spare Part Number</th>
-        <th>Spare Part Name</th>
-        
-        <th>Spare Part Image</th>
-        
-        <th>Total number </th>
-        <th>Total sales amount</th>
-        
-        
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>A001</td>
-        <td>Car door</td>
-        <td><img src="sample images/A-Sheet Metal/100001.jpg" width="50px" height="50px"> </td>
-        <td>300</td>
-        <td>830,000</td>
-        
-      </tr>
-  
-      <tr>
-        <td>B004</td>
-        <td>Seat</td>
-        <td><img src="sample images/B-Major Assemblies/200004.png" width="50px" height="50px"> </td>
-        <td>500</td>
-        <td>$450,000</td>
-      
-      </tr>
-  
-    <tr>
-      <td>C003</td>
-      <td>Car light</td>
-      <td><img src="sample images/C-Light Components/300003.png" width="50px" height="50px"> </td>
-      <td>2400</td>
-      <td>$3,600,000</td>
-      
-    </tr>
-  
-    <tr>
-      <td>D005</td>
-      <td>Floor mats/td>
-      <td><img src="sample images/D-Accessories/400005.png" width="50px" height="50px"> </td>
-      <td>50000</td>
-      <td>$1,000,000</td>
-      
-    </tr>
-  
-    </tbody>
-
-
-</body>
 </html>

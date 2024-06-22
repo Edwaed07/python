@@ -23,7 +23,6 @@ $result = $conn->query($sql);
 
 
 
-
 if ($result->num_rows > 0) {
     echo "
 
@@ -58,6 +57,7 @@ if ($result->num_rows > 0) {
     
     <table  class='order-table'> 
     <tr>
+    <th>Item Image</th>
     <th>Item ID</th>
     <th>Category</th>
     <th>Name</th>
@@ -74,7 +74,11 @@ if ($result->num_rows > 0) {
 
     // Output data of each row
     while($row = $result->fetch_assoc()) {
+        $img = $row['sparePartImage'];
+        $path = "../sample images/";
+
         echo "<tr>
+        <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
         <td>".$row["sparePartNum"]."</td>
         <td>".$row["sparePartCategory"]."</td>
         <td>".$row["sparePartName"]."</td>

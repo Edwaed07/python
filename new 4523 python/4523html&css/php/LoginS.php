@@ -9,7 +9,7 @@
     $rs = $conn->query($sql);
     $count = mysqli_fetch_array($rs)[0];
     if ($count >= 1) {
-        setcookie("managerName", $email, time() + 7200);
+        setcookie("managerID", $email, time() + 7200);
         // Redirect to item.html
         header("Location: ../item.html");
         exit();
