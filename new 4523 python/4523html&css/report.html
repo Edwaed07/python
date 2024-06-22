@@ -6,13 +6,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="homea.css" type="text/css">
-<link rel="stylesheet" href="report.css" type="text/css">
+<link rel="stylesheet" href="css/report.css" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .w3-sidebar a {font-family: "Roboto", sans-serif}
 body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </style>
 </head>
+
+<script>
+  function resizeIframe(iframe) {
+      iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 50 +  'px';
+  }
+</script>
+
 <body class="w3-content" style="max-width:1200px">
 
 <!-- Sidebar/menu -->  
@@ -80,63 +87,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </p>
   </header>
 
+
+
   <h1>Report</h1> 
+
+  <iframe src="php/createReport.php"  width="100%" height="100%" style="border:none" onload="resizeIframe(this)"></iframe>
   
-  <table class="order-table">
-    <thead>
-      <tr>
-        <th >Spare Part Number</th>
-        <th>Spare Part Name</th>
-        
-        <th>Spare Part Image</th>
-        
-        <th>Total number </th>
-        <th>Total sales amount</th>
-        
-        
-        
-        
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>A001</td>
-        <td>Car door</td>
-        <td><img src="sample images/A-Sheet Metal/100001.jpg" width="50px" height="50px"> </td>
-        <td>300</td>
-        <td>830,000</td>
-        
-      </tr>
   
-      <tr>
-        <td>B004</td>
-        <td>Seat</td>
-        <td><img src="sample images/B-Major Assemblies/200004.png" width="50px" height="50px"> </td>
-        <td>500</td>
-        <td>$450,000</td>
-      
-      </tr>
-  
-    <tr>
-      <td>C003</td>
-      <td>Car light</td>
-      <td><img src="sample images/C-Light Components/300003.png" width="50px" height="50px"> </td>
-      <td>2400</td>
-      <td>$3,600,000</td>
-      
-    </tr>
-  
-    <tr>
-      <td>D005</td>
-      <td>Floor mats/td>
-      <td><img src="sample images/D-Accessories/400005.png" width="50px" height="50px"> </td>
-      <td>50000</td>
-      <td>$1,000,000</td>
-      
-    </tr>
-  
-    </tbody>
 
 
 </body>
