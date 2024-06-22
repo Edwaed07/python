@@ -159,7 +159,7 @@
         // Execute the SQL query
         $sql = "SELECT * FROM item";
         $result = mysqli_query($conn, $sql);
-		$item = 0;
+		$item = 1;
 
         // Loop through the query results
         while ($row = mysqli_fetch_assoc($result)) {
