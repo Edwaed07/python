@@ -29,7 +29,7 @@
         if ($rs->num_rows > 0) {
             while($row = $rs->fetch_assoc()) {
             $Qty += $row['orderQty'];
-            $price += $row['sparePartOrderPrice'];
+            $price += $row['orderQty'] * $row['sparePartOrderPrice'];
             }
 
             $selectItemSql = "SELECT * FROM item WHERE sparePartNum = " . $i;

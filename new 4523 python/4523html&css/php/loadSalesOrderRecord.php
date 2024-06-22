@@ -10,6 +10,7 @@ $servername = "127.0.0.1";
 $username = "root";
 $password = "";
 $dbname = "projectdb";
+$mamagerID = $_COOKIE['ManagerID'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -36,6 +37,26 @@ if ($result->num_rows > 0) {
         window.location.href = 'OrderDetail.php?OrderID=' + OrderID;
     }
 
+    function assign(OrderID) {
+
+        if (confirm('Are you sure you want to assign this order?')) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'assignManager.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        alert(xhr.responseText);
+                        location.reload(); // Reload the page to reflect the changes
+                    }
+                };
+
+                xhr.send('OrderID=' + OrderID);
+            }
+
+    }
+
+
     </script>
 
     <table  class='order-table'> 
@@ -48,6 +69,7 @@ if ($result->num_rows > 0) {
     <th>Status</th>
     <th></th>
     <th></th>
+    <th></th>
     </tr>"; 
 
     // Output data of each row
@@ -58,11 +80,33 @@ if ($result->num_rows > 0) {
         <td>".$row["salesManagerID"]."</td>
         <td>".$row["orderDateTime"]."</td>
         <td>".$row["deliveryDate"]."</td>
-        <td>".$row["orderStatus"]."</td>
-        <td>
-          <button onclick='updateOrder(".$row["orderID"].")'>Update</button>
-        </td>
-        <td>
+        <td>".$row["orderStatus"]."</td>";
+        if ($row["salesManagerID"] == "none"){
+            echo"
+            <td>
+                <button onclick='assign(".$row["orderID"].")'>Assign</button>
+            </td>
+            <td>
+                <button onclick='updateOrder(".$row["orderID"].")'>Update</button>
+            </td>";
+        }else if ($row["salesManagerID"] == $mamagerID){
+            echo"
+            <td>
+                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='assign(".$row["orderID"].")'>Assign</button>
+            </td>
+            <td>
+                <button onclick='updateOrder(".$row["orderID"].")'>Update</button>
+            </td>";
+        }else{
+            echo"
+            <td>
+                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='assign(".$row["orderID"].")'>Assign</button>
+            </td>
+            <td>
+                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='updateOrder(".$row["orderID"]." disabled)'>Update</button>
+            </td>";
+        }
+        echo"<td>
           <button onclick='orderDetail(".$row["orderID"].")'>Order detail</button>
         </td>
         </tr>";

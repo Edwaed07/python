@@ -66,13 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows <= 0) {
         // Insert new order
-        $insertSql = "INSERT INTO orders (orderID, dealerID, salesManagerID , orderDateTime, deliveryAddress, orderStatus, shipCost) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $insertSql = "INSERT INTO orders (orderID, dealerID, salesManagerID , orderDateTime, deliveryAddress,deliveryDate, orderStatus, shipCost) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertSql);
         $orderStatus = 'Created';
         $shipCost = 0;
         $date = date('Y-m-d H:i:s');
         $salesManagerID = "none";
-        $stmt->bind_param("isssssi", $orderID, $dealerID, $salesManagerID, $date, $deliveryAddress, $orderStatus, $shipCost);
+        $currentDate = new DateTime();
+        $currentDate->modify('+1 month');
+        $deliveryDate = $currentDate->format('Y-m-d');
+        $stmt->bind_param("issssssi", $orderID, $dealerID, $salesManagerID, $date, $deliveryAddress,$deliveryDate, $orderStatus, $shipCost);
 
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Order inserted successfully']);

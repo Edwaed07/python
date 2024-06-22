@@ -58,7 +58,7 @@ $SalesManagerNumber = $column["contactNumber"];
     <script>
         
     function resizeIframe(iframe) {
-        iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 50 +  'px';
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 20 +  'px';
     }
 
     function backToSalesOrderRecord() {
@@ -105,6 +105,10 @@ $SalesManagerNumber = $column["contactNumber"];
             <input type="text" name="DeliveryDate" value="<?php echo $DeliveryDate?>" readonly>
             <br></br>
 
+            
+
+            <iframe src="loadOrderItem.php?orderId=<?php echo $OrderID; ?>" width="100%" height="100%" frameborder="0" onload="resizeIframe(this)"></iframe>
+
             <label >Shipping cost</label>   
             <input type="text" name="ShippingCost" value="<?php echo $ShippingCost?>" readonly>
             <br></br>
@@ -112,8 +116,6 @@ $SalesManagerNumber = $column["contactNumber"];
             <label >Order status</label>   
             <input type="text" name="Order status" value="<?php echo $OrderStatus?>" readonly>
             <br></br>
-
-            <iframe src="loadOrderItem.php?orderId=<?php echo $OrderID; ?>" width="100%" height="100%" frameborder="0" onload="resizeIframe(this)"></iframe>
 
             <br>
             <br>

@@ -1,10 +1,12 @@
 <?php
 
+if (isset($_GET['OrderID'])) {
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
 $dbname = "projectdb";
 $orderId = $_GET['OrderID'];
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -24,7 +26,23 @@ $OrderDateAndTime = $column["orderDateTime"];
 $DeliveryAddress = $column["deliveryAddress"];
 $DeliveryDate = $column["deliveryDate"];
 $ShippingCost = $column["shipCost"];
-$OrderStatus = $column["orderStatus"];
+$OrderStatus ='<div class="radio-group">
+                <label><input type="radio" name="Status" value="accepted" required >accepted</label>
+                <label><input type="radio" name="Status" value="rejected" required>rejected</label>
+            </div>';
+if ($column["orderStatus"] == 'accepted'){
+    $OrderStatus ='<div class="radio-group">
+                <label><input type="radio" name="Status" value="accepted" required checked>accepted</label>
+                <label><input type="radio" name="Status" value="rejected" required>rejected</label>
+            </div>';
+}
+if ($column["orderStatus"] == 'rejected'){
+    $OrderStatus ='<div class="radio-group">
+                <label><input type="radio" name="Status" value="accepted" required>accepted</label>
+                <label><input type="radio" name="Status" value="rejected" required checked>rejected</label>
+            </div>';
+}
+
 
 // Prepare the SQL statement with a placeholder for the parameter
 $sql = "SELECT * FROM salesmanager where salesManagerID = ?";
@@ -42,8 +60,35 @@ $column = $result->fetch_assoc();
 
 $SalesManagerContactName = $column["contactName"];
 $SalesManagerNumber = $column["contactNumber"];
+}
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+       
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $dbname = "projectdb";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    $OrderID = $_POST['OrderID'];
+    $newStatus = $_POST['Status'];
+
+    $message = "";
+    // Update database with new values
+    $updateSql = "UPDATE orders SET orderStatus = ? WHERE orderID = ?";
+    $stmt = $conn->prepare($updateSql);
+    $stmt->bind_param("si", $newStatus, $OrderID);
+
+    if ($stmt->execute() === TRUE) {
+        $message = "Item updated successfully";
+    } else {
+        $message = "Error updating item: " . $stmt->error;
+    }
+       
+}
 
 
 ?>
@@ -58,21 +103,28 @@ $SalesManagerNumber = $column["contactNumber"];
     <script>
 
     function resizeIframe(iframe) {
-        iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 50 +  'px';
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 20 +  'px';
     }
 
     function backToSalesOrderRecord() {
             parent.location.href = '../Sales Order records.html';
     }
 
+    
     </script>
 
 <body>
 
 <div class="container">
+<?php if (!empty($message)): ?>
+        <script>
+            alert('<?php echo $message; ?>');
+            backToSalesOrderRecord();
+        </script>
+    <?php endif; ?>
         
         <h1>Update Order</h1>
-        <form>
+        <form  method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
             <label >Order ID :</label>
             <input type="text" name="OrderID" value="<?php echo $OrderID?>" readonly>
             <br></br>
@@ -81,6 +133,7 @@ $SalesManagerNumber = $column["contactNumber"];
             <input type="text" name="DealerID" value="<?php echo $DealerID?>">
             <br></br>
 
+            
             <label >Sales Manager ID :</label>
             <input type="text" name="SalesManagerID" value="<?php echo $SalesManagerID?>">
             <br></br>
@@ -105,15 +158,16 @@ $SalesManagerNumber = $column["contactNumber"];
             <input type="text" name="DeliveryDate" value="<?php echo $DeliveryDate?>">
             <br></br>
 
+            
+            <iframe src="loadOrderItem.php?orderId=<?php echo $OrderID; ?>" width="100%" height="100%" frameborder="0" onload="resizeIframe(this)"></iframe>
+
             <label >Shipping cost</label>   
             <input type="text" name="ShippingCost" value="<?php echo $ShippingCost?>">
             <br></br>
 
-            <label >Order status</label>   
-            <input type="text" name="Order status" value="<?php echo $OrderStatus?>">
+            <label >Order status</label> 
+            <?php echo $OrderStatus?>
             <br></br>
-
-            <iframe src="loadOrderItem.php?orderId=<?php echo $OrderID; ?>" width="100%" height="100%" frameborder="0" onload="resizeIframe(this)"></iframe>
 
             <br>
             <br>
