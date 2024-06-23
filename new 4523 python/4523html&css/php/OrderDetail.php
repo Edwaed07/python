@@ -58,11 +58,11 @@ $SalesManagerNumber = $column["contactNumber"];
     <script>
         
     function resizeIframe(iframe) {
-        iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 20 +  'px';
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 0 +  'px';
     }
 
-    function backToSalesOrderRecord() {
-            parent.location.href = '../Sales Order records.html';
+    function backToOrderRecord() {
+            parent.location.href = '../order record.html';
     }
 
     </script>
@@ -121,7 +121,7 @@ $SalesManagerNumber = $column["contactNumber"];
             <br>
 
     <div class="button-container">
-        <input type="button" value="Back" onclick="backToSalesOrderRecord()">
+        <input type="button" value="Back" onclick="backToOrderRecord()">
     </div>
 
 

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Get price of the spare part
-    $getPriceSql = "SELECT price FROM item WHERE sparePartNum = ?";
+    $getPriceSql = "SELECT price, sparePartCategory FROM item WHERE sparePartNum = ?";
     $stmt = $conn->prepare($getPriceSql);
     $stmt->bind_param("i", $sparePartNum);
     $stmt->execute();
@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $price = $row['price'];
+        $category = $row['sparePartCategory'];
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Spare part not found']);
         exit;
@@ -113,9 +114,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else {
         // Insert new order item
-        $insertItemSql = "INSERT INTO ordersitem (orderID, sparePartNum, orderQty, sparePartOrderPrice) VALUES (?, ?, ?, ?)";
+        $insertItemSql = "INSERT INTO ordersitem (orderID, sparePartNum, orderQty, sparePartOrderPrice, sparePartCategory) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insertItemSql);
-        $stmt->bind_param("iiid", $orderID, $sparePartNum, $Qty, $price);
+        $stmt->bind_param("iiidi", $orderID, $sparePartNum, $Qty, $price, $category);
 
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Order item inserted successfully']);

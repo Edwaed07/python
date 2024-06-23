@@ -152,6 +152,7 @@ CREATE TABLE OrdersItem (
     sparePartNum INT(10) NOT NULL,
     orderQty INT(10) NOT NULL,
     sparePartOrderPrice DOUBLE NOT NULL,
+    sparePartCategory INT(10) NOT NULL,
     PRIMARY KEY (orderID , sparePartNum)
 );
 
@@ -163,12 +164,12 @@ ALTER TABLE OrdersItem
     ADD CONSTRAINT fk_OrdersItem_sparePartNum_Item FOREIGN KEY (sparePartNum) REFERENCES Item (sparePartNum),
     ADD CONSTRAINT fk_OrdersItem_orderID_Item FOREIGN KEY (orderID) REFERENCES Orders (orderID);
 
-INSERT INTO OrdersItem (orderID, sparePartNum, orderQty, sparePartOrderPrice) VALUES 
-(1, 1, 1, 3999),
-(2, 2, 2, 3500),
-(2, 3, 2, 6000),
-(3, 4, 3, 10000),
-(3, 5, 3, 500),
-(3, 6, 3, 1000);
+INSERT INTO OrdersItem (orderID, sparePartNum, orderQty, sparePartOrderPrice, sparePartCategory) VALUES 
+(1, 1, 1, 3999, 1),
+(2, 2, 2, 3500, 1),
+(2, 3, 2, 6000, 2),
+(3, 4, 3, 10000, 2),
+(3, 5, 3, 500, 3),
+(3, 6, 3, 1000, 3);
 
 COMMIT;
