@@ -22,7 +22,7 @@
         $result = $conn->query($checksql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                if( $sparePartNum == $row["orderID"]){
+                if( false){
                     echo "Fail to delete order record";
                     $result->close();
                     $conn->close();
@@ -38,7 +38,7 @@
         
     
        // SQL query to delete the orders
-       $sql = "DELETE FROM orders WHERE ordersID = ?";
+       $sql = "DELETE FROM orders WHERE orderID = ?";
        
        // Prepare statement
        $stmt = $conn->prepare($sql);

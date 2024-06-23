@@ -120,7 +120,7 @@
 					<img height="auto" src="../photo/userin.png" width="32"></a> 
 				<a href="../carlist.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/list.png" width="35"></a> 
-				<a href="order%20record.html" style="text-decoration: none;">
+				<a href="../order%20record.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/record.png" width="25"></a> 
 					<a href="logout.php" style="text-decoration: none;">
 					<img height="auto" src="../photo/logout.png" width="35"></a></p>

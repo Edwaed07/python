@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
             parent.location.href = '../order record.html';
         }
 
-        function deleteorderrcord(orderID) { 
+        function deleteorderRecord(orderID) { 
            if (confirm('Are you sure you want to delete this order rcord?')) {
                var xhr = new XMLHttpRequest();
                xhr.open('POST', 'deleterecord.php', true);
@@ -48,6 +48,10 @@ if ($result->num_rows > 0) {
                xhr.send('orderID=' + orderID);
            }
         }
+
+        function orderDetail(OrderID) { 
+        window.location.href = 'OrderDetail.php?OrderID=' + OrderID;
+    }
    
     </script>
     
@@ -62,7 +66,9 @@ if ($result->num_rows > 0) {
     <th>Delivery Date</th>
     <th>Order Status</th>
     <th>Ship Cost</th>
-0
+    <th></th>
+    <th></th>
+
     </tr>"; 
 
     // Output data of each row
@@ -79,10 +85,10 @@ if ($result->num_rows > 0) {
 
 
         <td>
-          <button onclick='deleteItem(".$row["orderID"].")'>Delete</button>
+          <button onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
         </td>
         <td>
-          <button onclick='editItem(".$row["sparePartNum"].")'>Detail</button>
+          <button onclick='orderDetail(".$row["orderID"].")'>Detail</button>
         </td>
         </tr>";
     }
