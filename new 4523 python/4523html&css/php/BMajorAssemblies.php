@@ -98,7 +98,7 @@
 					<img height="auto" src="../photo/list.png" width="35"></a> 
 				<a href="order%20record.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/record.png" width="25"></a> 
-					<a href="../index.html" style="text-decoration: none;">
+					<a href="logout.php" style="text-decoration: none;">
 					<img height="auto" src="../photo/logout.png" width="35"></a></p>
 		</header>
 		<!-- Image header -->
@@ -126,7 +126,7 @@
         $img = $row['sparePartImage'];
         $path = "../sample images/";
         echo '<div class="flex-item">
-            <img src="' . $path . $img . '.png" style="width:150px; height:150px">
+			<img src="' . $path . $img . '" style="width:165px; height:150px">
             <br>
             <b>' . $row['sparePartName'] . '</b><br>
             <span>$' . $row['price'] . '</span><br>

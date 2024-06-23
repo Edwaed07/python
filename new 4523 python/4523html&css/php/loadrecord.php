@@ -58,6 +58,7 @@ if ($result->num_rows > 0) {
     
     <table  class='order-table'> 
     <tr>
+    <th>Item Image</th>
     <th>Order ID</th>
     <th>Dealer ID</th>
     <th>Sales Manager</th>
@@ -73,7 +74,11 @@ if ($result->num_rows > 0) {
 
     // Output data of each row
     while($row = $result->fetch_assoc()) {
+        $img = $row['sparePartImage'];
+        $path = "../sample images/";
+        
         echo "<tr>
+        <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
         <td>".$row["orderID"]."</td>
         <td>".$row["dealerID"]."</td>
         <td>".$row["salesManagerID"]."</td>
@@ -82,7 +87,6 @@ if ($result->num_rows > 0) {
         <td>".$row["deliveryDate"]."</td>
         <td>".$row["orderStatus"]."</td>
         <td>".$row["shipCost"]."</td>
-
 
         <td>
           <button onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
@@ -96,11 +100,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
-
-
 $conn->close();
-
 ?>
 
 

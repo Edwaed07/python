@@ -47,5 +47,21 @@ body {
     justify-content: space-between;
 }
 
+/* 在您的 CSS 文件中添加這些樣式 */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.left-side, .right-side {
+  flex: 1 1 50%; /* 每側佔據 50% 的寬度 */
+}
+
+/* 確保 iframe 也是響應式的 */
+iframe {
+  width: 100%;
+  height: auto;
+  border: none;
+}
 
 
