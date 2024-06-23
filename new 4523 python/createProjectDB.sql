@@ -57,7 +57,9 @@ CREATE TABLE SalesManager (
 INSERT INTO SalesManager (salesManagerID, password, managerName, contactName, contactNumber) VALUES 
 ('peter@slms.com', 'itp4235m', 'Chan Tai Man, Peter', 'Peter', 91239123),
 ('mary@slms.com', 'itp4235m', 'Wong Lai Man, Mary', 'Mary', 51235123),
-('kit@slms.com', 'itp4235m', 'Li Chun Kit, Kit', 'Kit', 31233123);
+('kit@slms.com', 'itp4235m', 'Li Chun Kit, Kit', 'Kit', 31233123),
+('none', 'none', 'none', 'none', 00000000);
+
 
 DROP TABLE IF EXISTS Item;
 
