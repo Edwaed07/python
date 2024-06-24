@@ -29,7 +29,7 @@
 .flex-item b {
     display: block;
     min-height: 3em; 
-    margin-bottom: -1.5em; 
+    margin-bottom: -1.5em;
 }
 
 .flex-item:nth-child(4n+1) {
@@ -39,10 +39,35 @@
     </style>
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+	
+	function createOrAddToOrder(sparePartNum, item) {
+        var quantity = document.getElementById(item + 'quantity').value;
+
+        $.ajax({
+            url: 'createOrAddToOrder.php', 
+            type: 'POST',
+            data: {
+                sparePartNum: sparePartNum,
+                quantity: quantity
+            },
+            success: function(response) {
+                console.log('Success:', response);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+</script>
+
 <body class="w3-content" style="max-width:1200px">
 	<!-- Sidebar/menu -->
 
 	<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" id="mySidebar" style="z-index:3;width:250px">
+		<a href="home.php" style="text-decoration: none;">
 		<img class="logo" src="../photo/logo.png" style="width: 150px; height: auto;margin-bottom: -60px;">
 
 		<div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
@@ -51,7 +76,7 @@
 			 var element = document.getElementById("Past");
 			 element.scrollIntoView({ behavior: "smooth" });
 			}
-			</script>
+			</script> 
 			<a class="w3-bar-item w3-button" href="../php/home.php">All</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/ASheetMetal.php">Sheet Metal</a> <br>
 			<a class="w3-bar-item w3-button" href="../php/BMajorAssemblies.php">Major Assemblies</a> <br>
@@ -64,7 +89,7 @@
 
 	<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
 		<div class="w3-bar-item w3-padding-24 w3-wide">
-			LOGO
+			SLMC
 		</div>
 		<a class="w3-bar-item w3-button w3-padding-24 w3-right" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
 	</header>
@@ -94,52 +119,59 @@
 			<i class="fa fa-search"></i> 
 				<a href="update.php" style="text-decoration: none;">
 					<img height="auto" src="../photo/userin.png" width="32"></a> 
-				<a href="shoppinglist.html" style="text-decoration: none;">
+				<a href="../carlist.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/list.png" width="35"></a> 
-				<a href="order%20record.html" style="text-decoration: none;">
+				<a href="../order%20record.html" style="text-decoration: none;">
 					<img height="auto" src="../photo/record.png" width="25"></a> 
 					<a href="logout.php" style="text-decoration: none;">
 					<img height="auto" src="../photo/logout.png" width="35"></a></p>
 		</header>
-		<!-- Image header -->
-
 
 		<br>
-
-		<div class="w3-container w3-text-grey" id="Past">
-			<p>5 items</p>
-		</div>
 		<div class="w3-row w3-grayscale">
 		<!-- Product grid -->
 
 		<div class="flex-container">
-		<?php
-    // Connect to the database
-    $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
+    <?php
+        // Connect to the database
+        $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
 
-    // Execute the SQL query to select records where sparePartImage starts with '1'
-    $sql = "SELECT * FROM item WHERE sparePartImage LIKE '3%'";
-    $result = mysqli_query($conn, $sql);
+        // Execute the SQL query
+        $sql = "SELECT * FROM item WHERE sparePartCategory LIKE '3'" ;
+        $result = mysqli_query($conn, $sql);
+		$item = 1;
 
-    // Loop through the query results
-    while ($row = mysqli_fetch_assoc($result)) {
-        $img = $row['sparePartImage'];
-        $path = "../sample images/";
-        echo '<div class="flex-item">
+        // Loop through the query results
+        while ($row = mysqli_fetch_assoc($result)) {
+            $img = $row['sparePartImage'];
+			$path = "../sample images/";
+			$item ++ ;
+			$sparePartNum = $row['sparePartNum'];
+			echo '<div class="flex-item">
 			<img src="' . $path . $img . '" style="width:165px; height:150px">
-            <br>
-            <b>' . $row['sparePartName'] . '</b><br>
-            <span>$' . $row['price'] . '</span><br>
-            <input type="number" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">
-            <button id="addToCartBtn" style="background-color: #007bff; color: white; width: 120px; height: 25px;">Add to cart</button>
-            <br><br/>
-        </div>';
-    }
+			<br>
+			<b>' . $row['sparePartName'] . '</b><br>
+			<span>$' . $row['price'] . '</span><br>
+			<input type="number" id="' . $item . 'quantity" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">';
+			if ($row['stockItemQty'] <= 0){
+				echo'
+					<button id="addToCartBtn' . $item . '" style="background-color: #B08278; color: white; width: 120px; height: 25px; pacity: 0.5; pointer-events: none;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
+					<br><br/>';
 
-    // Close the database connection
-    mysqli_close($conn);
-?>
-
+			}else{
+				echo'
+					<button id="addToCartBtn' . $item . '" style="background-color: #007bff; color: white; width: 120px; height: 25px;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
+					<br><br/>';
+			}
+			
+			
+			echo'
+			</div>';
+        }
+		
+        // Close the database connection
+        mysqli_close($conn);
+    ?>
 </div>
 		
 		<!-- Footer -->

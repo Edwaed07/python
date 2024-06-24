@@ -88,7 +88,7 @@
 
 	<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
 		<div class="w3-bar-item w3-padding-24 w3-wide">
-			LOGO
+			SLMC
 		</div>
 		<a class="w3-bar-item w3-button w3-padding-24 w3-right" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
 	</header>
@@ -144,10 +144,6 @@
 		setInterval(changeImage, 4000);
 		</script><br>
 		<br>
-
-		<div class="w3-container w3-text-grey" id="Past">
-			<p>20 items</p>
-		</div>
 		<div class="w3-row w3-grayscale">
 		<!-- Product grid -->
 
@@ -175,7 +171,7 @@
 			<input type="number" id="' . $item . 'quantity" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">';
 			if ($row['stockItemQty'] <= 0){
 				echo'
-					<button id="addToCartBtn' . $item . '" style="background-color: #007bff; color: white; width: 120px; height: 25px; pacity: 0.5; pointer-events: none;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
+					<button id="addToCartBtn' . $item . '" style="background-color: #B08278; color: white; width: 120px; height: 25px; pacity: 0.5; pointer-events: none;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
 					<br><br/>';
 
 			}else{
