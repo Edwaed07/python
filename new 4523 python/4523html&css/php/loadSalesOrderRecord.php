@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
                 <button onclick='assign(".$row["orderID"].")'>Assign</button>
             </td>
             <td>
-                <button onclick='updateOrder(".$row["orderID"].")'>Update</button>
+                <button disabled style='opacity: 0.5; pointer-events: none; onclick='updateOrder(".$row["orderID"].")'>Update</button>
             </td>";
         }else if ($row["salesManagerID"] == $mamagerID){
             echo"

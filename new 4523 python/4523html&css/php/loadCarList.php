@@ -62,6 +62,12 @@ if ($result->num_rows > 0) {
         
         </table>
         <br>
+        
+        <label><input type='radio' name='Category' value='1' required> 1</label>
+        <label><input type='radio' name='Category' value='2' required> 2</label>
+        <br>
+        <labe>Shipping cost: </label>
+        <br>
         <button onclick='SendOrder(".$orderID.")'>Order</button>";
         }
 

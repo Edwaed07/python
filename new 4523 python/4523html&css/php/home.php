@@ -172,10 +172,21 @@
 			<br>
 			<b>' . $row['sparePartName'] . '</b><br>
 			<span>$' . $row['price'] . '</span><br>
-			<input type="number" id="' . $item . 'quantity" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">
-			<button id="addToCartBtn' . $item . '" style="background-color: #007bff; color: white; width: 120px; height: 25px;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
-			<br><br/>
-		</div>';
+			<input type="number" id="' . $item . 'quantity" name="quantity" min="1" value="1" style="width: 50px; margin-right: 10px;">';
+			if ($row['stockItemQty'] <= 0){
+				echo'
+					<button id="addToCartBtn' . $item . '" style="background-color: #007bff; color: white; width: 120px; height: 25px; pacity: 0.5; pointer-events: none;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
+					<br><br/>';
+
+			}else{
+				echo'
+					<button id="addToCartBtn' . $item . '" style="background-color: #007bff; color: white; width: 120px; height: 25px;" onclick="createOrAddToOrder(' . $sparePartNum . ', ' . $item . ')">Add to cart</button>
+					<br><br/>';
+			}
+			
+			
+			echo'
+			</div>';
         }
 		
         // Close the database connection

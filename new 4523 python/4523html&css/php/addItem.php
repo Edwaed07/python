@@ -101,7 +101,6 @@ function backToItem() {
                 <label><input type="radio" name="Category" value="2" required> 2</label>
                 <label><input type="radio" name="Category" value="3" required> 3</label>
                 <label><input type="radio" name="Category" value="4" required> 4</label>
-                <label><input type="radio" name="Category" value="5" required> 5</label>
             </div>
             <br></br>
 
