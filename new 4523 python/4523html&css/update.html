@@ -1,114 +1,35 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-	<title>Dealer's Information</title>
-	<link href="css/update.css" rel="stylesheet" type="text/css">
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<link href="css/homea.css" rel="stylesheet" type="text/css">
-	<link href="css/homeb.css" rel="stylesheet" type="text/css">
-	<link href="css/homec.css" rel="stylesheet" type="text/css">
-	<style>
-	      .w3-sidebar a {font-family: "Roboto", sans-serif}
-	      body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-	</style>
+    <title>Dealer's Information</title>
+    <!-- 其他的<head>內容 -->
 </head>
-
 <body class="w3-content" style="max-width:1200px">
-	<!-- Sidebar/menu -->
-
-
-	<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" id="mySidebar" style="z-index:3;width:250px">
-		<br>
-		<br>
-
-
-		<div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-			<img alt="User Icon" src="photo/user.png" width="190px"><br>
-			<br>
-			<a class="w3-bar-item w3-button" href="#">Lo Konw Yi</a> 
-			<a class="w3-bar-item w3-button" href="#">+852 6485 4422</a> 
-			<a class="w3-bar-item w3-button" href="#">lokonwyiwk@gmail.com</a> 
-			<a class="w3-bar-item w3-button" href="#">Room 032 Ground Floor<br>
-			6 Oi Kwan Road<br>
-			Wan Chai<br>
-			Hong Kong</a>
-		</div>
-	</nav>
-	<!-- Top menu on small screens -->
-
-
-	<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-		<div class="w3-bar-item w3-padding-24 w3-wide">
-			LOGO
-		</div>
-		<a class="w3-bar-item w3-button w3-padding-24 w3-right" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-	</header>
-	<!-- Overlay effect when opening sidebar on small screens -->
-
-
-	<div class="w3-overlay w3-hide-large" id="myOverlay" onclick="w3_close()" style="cursor:pointer" title="close side menu">
-	</div>
-	<!-- !PAGE CONTENT! -->
-
-
-	<div class="w3-main" style="margin-left:250px">
-		<!-- Push down content on small screens -->
-
-
-		<div class="w3-hide-large" style="margin-top:83px">
-		</div>
-		<!-- Top header -->
-
-
-		<header class="w3-container w3-xlarge">
-			<a href="home.html" style="text-decoration: none;">
-			<img class="logo" src="photo/logo.png" style="width: 88px; height: auto; float: left; margin-right: 10px;margin-left: 10px;"></a>
-
-			<p class="w3-left">Smart & Luxury Motor Company</p>
-
-
-			<p class="w3-right"><a href="update.html" style="text-decoration: none;">
-			<img height="auto" src="photo/userin.png" width="32"></a> 
-
-			<a href="shoppinglist.html" style="text-decoration: none;">
-			<img height="auto" src="photo/list.png" width="35"></a> 
-
-			<a href="order%20record.html" style="text-decoration: none;">
-			<img height="auto" src="photo/record.png" width="25"></a> 
-
-			<a href="Index.html" style="text-decoration: none;">
-			<img height="auto" src="photo/logout.png" width="35"></a></p>
-		</header>
-
-
-		<h1><b>Update Information</b>
-		</h1>
-
-
-		<form>
-			<label for="dealerName">Dealer Name:</label>
-
-			<h4><label for="dealerName">Lo Konw Yi</label>
-			</h4>
-			<label for="dob">Date of Birth:</label>
-
-			<h4><label for="dob">07/08/1999</label>
-			</h4>
-			<label for="address">Address:</label> <input id="address" name="address" placeholder="Enter new address" type="text"> <label for="phone">Phone:</label> <input id="phone" name="phone" placeholder="Enter new phone number" type="text"> <label for="email">Email:</label> <input id="email" name="email" placeholder="Enter new email" type="email"><br>
-			<label for="address">Password:</label><input id="password" name="password" placeholder="Enter new password" type="text">
-			<br>
-			<input type="submit" value="Update">
-		</form>
-		<!-- Footer -->
-
-
-		<div style="position: absolute; bottom:0;">
-			<footer class="w3-container w3-padding-30 w3-light-grey w3-center w3-large" style="width: 950px;;">
-				<p>@Smart & Luxury Motor Company</p>
-			</footer>
-		</div>
-	</div>
+    <!-- 頁面內容 -->
+    <form action="updateProfilo.php" method="post">
+        <!-- 表單內容 -->
+        <div>
+            <label for='tel'>Contact Number:</label>
+            <input id='tel' name='tel' pattern='^[0-9]{8}$' type='text'>
+        </div>
+        <div>
+            <label for='fax'>Fax Number:</label>
+            <input id='fax' name='fax' pattern='^[0-9]{8}$' type='text'>
+        </div>
+        <div>
+            <label for='addr'>Delivery Address:</label>
+            <textarea cols='50' id='addr' name='addr' rows='4'></textarea>
+        </div>
+        <div>
+            <label for="passwd">New Password:</label>
+            <input id="passwd" name="passwd" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[\w]{8,}$" type="password">
+        </div>
+        <div>
+            <label for="passwd2">Confirm Password:</label>
+            <input id="passwd2" name="passwd2" type="password">
+        </div>
+        <input type="submit" value="Save">
+    </form>
+    <!-- 更多頁面內容 -->
 </body>
 </html>

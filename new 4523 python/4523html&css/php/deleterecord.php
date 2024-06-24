@@ -1,7 +1,6 @@
 <?php
    if (isset($_POST['orderID'])) {
 
-        // Get the item ID from the POST request
         $orderID = $_POST['orderID'];
 
         $servername = "127.0.0.1";
@@ -9,53 +8,35 @@
         $password = "";
         $dbname = "projectdb";
         
-        // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
             
-       // Check connection
        if ($conn->connect_error) {
            die("Connection failed: " . $conn->connect_error);
        }
 
-    
-        $checksql = "SELECT orderID FROM orders ";
-        $result = $conn->query($checksql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                if( false){
-                    echo "Fail to delete order record";
-                    $result->close();
-                    $conn->close();
-                    return;
-                }
-
-
-            }
-
-        }else {
-            echo "Error: " . $result->error;
-        }
-        
-    
-       // SQL query to delete the orders
-       $sql = "DELETE FROM orders WHERE orderID = ?";
-       
-       // Prepare statement
+       // 首先刪除 ordersitem 表中的相關行
+       $sql = "DELETE FROM ordersitem WHERE orderID = ?";
        $stmt = $conn->prepare($sql);
-       $stmt->bind_param('s', $orderID);
+       $stmt->bind_param('i', $orderID);
+       if (!$stmt->execute()) {
+          echo "Error deleting related order items: " . $stmt->error;
+          $stmt->close();
+          $conn->close();
+          return; // 如果刪除失敗，停止執行
+       }
+       $stmt->close();
+
+       // 然後刪除 orders 表中的行
+       $sql = "DELETE FROM orders WHERE orderID = ?";
+       $stmt = $conn->prepare($sql);
+       $stmt->bind_param('i', $orderID);
        if ($stmt->execute()) {
-          echo "Delete successed";
-         
-        }else{
-
-          echo"Error deleting order record: " . $stmt->error;
-
+          echo "Delete succeeded";
+        } else {
+          echo "Error deleting order record: " . $stmt->error;
         }
 
-       // Close connection
        $stmt->close();
        $conn->close();
-       
    }
-
 ?>
