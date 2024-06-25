@@ -54,11 +54,7 @@
                         WHERE sparePartNum=$PartNum";
         if ($conn->query($updateSql) == TRUE) {
             $message = "Item updated successfully";
-            
-            
-        } else {
-            $message =  "Error updating item: " . $conn->error;
-        }
+        } 
            
     }
 
@@ -80,7 +76,7 @@ function backToItem() {
     <?php if (!empty($message)): ?>
         <script>
             alert('<?php echo $message; ?>');
-            backToItem();
+            window.location.reload();
         </script>
     <?php endif; ?>
 

@@ -1,3 +1,53 @@
+<?php
+
+			$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
+			session_start();
+			$dealerID = $_COOKIE['DealerID'];
+
+			$sql = "SELECT * FROM dealer WHERE dealerID = ?";
+			$stmt = mysqli_prepare($conn, $sql);
+			mysqli_stmt_bind_param($stmt, 's', $dealerID);
+			mysqli_stmt_execute($stmt);
+			$result = mysqli_stmt_get_result($stmt);
+
+			if ($result && mysqli_num_rows($result) > 0) {
+				$row = mysqli_fetch_assoc($result);
+				$dealerName = $row['dealerName'];
+				$contactName  = $row['contactName'];
+				$contactNumber = $row['contactNumber'];
+				$faxNumber = $row['faxNumber'];
+				$deliveryAddress = $row['deliveryAddress'];
+			}
+
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				$contactNumber = $_POST['tel']  ;
+				$faxNumber =  $_POST['fax'] ;
+				$deliveryAddress = $_POST['addr'] ;
+				$password = $_POST['passwd'] ;
+				
+
+				$sql = "UPDATE Dealer SET 
+							contactNumber = ?,
+							faxNumber = ?,
+							deliveryAddress = ?,
+							password = ?
+						WHERE dealerID = ?";
+
+				$stmt = mysqli_prepare($conn, $sql);
+				mysqli_stmt_bind_param($stmt, 'sssss', $contactNumber, $faxNumber, $deliveryAddress, $password, $dealerID);
+				mysqli_stmt_execute($stmt);
+
+				if (mysqli_stmt_affected_rows($stmt) > 0) {
+					$message = "profile updated successfully";
+
+				} else {
+					$message = "";
+				}
+				mysqli_stmt_close($stmt);
+			}
+			mysqli_close($conn);
+			?>
+
 <!DOCTYPE html>
 
 <html>
@@ -27,6 +77,20 @@
 	</style>
 </head>
 
+<script>
+        function validateForm() {
+            var password = document.getElementById("passwd").value;
+            var confirmPassword = document.getElementById("passwd2").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
 <body class="w3-content" style="max-width:1200px">
 	<!-- Sidebar/menu -->
 
@@ -41,57 +105,11 @@
 			<img alt="User Icon" src="../photo/user.png" width="180px"><br>
 			<br>
 
-			<?php
-
-			$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
-			session_start();
-			$dealerID = $_COOKIE['DealerID'];
-
-			$sql = "SELECT * FROM dealer WHERE dealerID = ?";
-			$stmt = mysqli_prepare($conn, $sql);
-			mysqli_stmt_bind_param($stmt, 's', $dealerID);
-			mysqli_stmt_execute($stmt);
-			$result = mysqli_stmt_get_result($stmt);
-
-			if ($result && mysqli_num_rows($result) > 0) {
-				$row = mysqli_fetch_assoc($result);
-				echo "<p><b>" . $row['dealerName'] . "</b></p>";
-				echo "<p><b>" . $row['contactName'] . "</b></p>";
-				echo "<p>Phone :  " . $row['contactNumber'] . "</p>";
-				echo "<p>Fax : " . $row['faxNumber'] . "</p>";
-				echo "<p>Address : " . $row['deliveryAddress'] . "</p>";
-				$contactNumber = $row['contactNumber'];
-				$faxNumber = $row['faxNumber'];
-				$deliveryAddress = $row['deliveryAddress'];
-			}
-
-			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				$contactNumber = isset($_POST['tel']) ? $_POST['tel'] : '';
-				$faxNumber = isset($_POST['fax']) ? $_POST['fax'] : '';
-				$deliveryAddress = isset($_POST['addr']) ? $_POST['addr'] : '';
-				$password = isset($_POST['passwd']) ? password_hash($_POST['passwd'], PASSWORD_DEFAULT) : '';
-
-				$sql = "UPDATE Dealer SET 
-							contactNumber = ?,
-							faxNumber = ?,
-							deliveryAddress = ?,
-							password = ?
-						WHERE dealerID = ?";
-
-				$stmt = mysqli_prepare($conn, $sql);
-				mysqli_stmt_bind_param($stmt, 'sssss', $contactNumber, $faxNumber, $deliveryAddress, $password, $dealerID);
-				mysqli_stmt_execute($stmt);
-
-				if (mysqli_stmt_affected_rows($stmt) > 0) {
-					echo "Record updated successfully";
-				} else {
-					echo "Error updating record: " . mysqli_stmt_error($stmt);
-				}
-				mysqli_stmt_close($stmt);
-			}
-			mysqli_close($conn);
-			?>
-
+			<p><b><?php echo"$dealerName" ?></b></p>
+			<p><b><?php echo"$contactName" ?></b></p>
+			<p>Phone :  <?php echo"$contactNumber" ?></p>
+			<p>Fax : <?php echo"$faxNumber" ?></p>
+			<p>Address : <?php echo"$deliveryAddress"?></p>
 
 
 		</div>
@@ -143,6 +161,16 @@
 		<h1><b>Update Contact Information</b>
 		</h1>
 		<br>
+		
+		<?php if (!empty($message)): ?>
+        <script>
+            alert('<?php echo $message; ?>');
+			<?php $message = ""; ?>
+
+        </script>
+    	<?php endif; ?>
+
+		<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" onsubmit="return validateForm()">
 
 		<div style="display: flex; flex-direction: column; align-items: center;">
 			<div style="display: flex; gap: 20px;">
@@ -165,17 +193,16 @@
 		</div>
 		<br>
 		<br>
-		<form action="php/updateProfilo.php" method="post">
+		
 			<div style="display: flex; justify-content: center;">
 				<fieldset>
-					<legend>Edit Password</legend> <label for="passwd"><input id="passwd" name="passwd" oninput=
-					"this.className = ''" onkeyup="pwValidate();" pattern=
-					"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[\w]{8,}$" placeholder=" Enter new password(8 number)" size=
+					<legend>Edit Password</legend> <label for="passwd"><input id="passwd" name="passwd" pattern=
+					"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[\w]{8,}$" placeholder=" Enter new password (8 number minmum)" size=
 					"50" title=
-					"Must contain at least\none number\none uppercase\nlowercase letter, \n at least 8 or more characters."
+					"Must contain at least one number, one uppercase and one lowercase letter, and at least 8 or more characters."
 					type="password" value="<?php $password ?>"></label><br>
-					<label for="passwd2"><input id="passwd2" oninput="this.className = ''" onkeyup="checkSame();"
-					placeholder=" Enter password again" size="50" title="Enter the password again(8 number)" type=
+					<label for="passwd2"><input id="passwd2" name="passwd2"
+					placeholder=" Enter password again" size="50" title="Enter the password again" type=
 					"password"></label>
 
 					<div id="samePw">
@@ -183,7 +210,7 @@
 				</fieldset>
 			</div>
 			<br>
-			<input onclick="return saveChange()" type="submit" value="Save">
+			<input type="submit" value="Save" >
 		</form>
 	</div>
 	<script src="./js/profilo.js">
