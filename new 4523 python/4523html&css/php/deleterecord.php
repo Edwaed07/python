@@ -14,29 +14,69 @@
            die("Connection failed: " . $conn->connect_error);
        }
 
-       // 首先刪除 ordersitem 表中的相關行
-       $sql = "DELETE FROM ordersitem WHERE orderID = ?";
-       $stmt = $conn->prepare($sql);
-       $stmt->bind_param('i', $orderID);
-       if (!$stmt->execute()) {
-          echo "Error deleting related order items: " . $stmt->error;
-          $stmt->close();
-          $conn->close();
-          return; // 如果刪除失敗，停止執行
-       }
-       $stmt->close();
+   
+       
+       
+    $sql = "UPDATE orders SET orderStatus = 'Cancelled' WHERE orderID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $orderID);
+    if ($stmt->execute()) {
+        echo "Order status updated successfully<br>";
+    } else {
+        echo "Error updating order status: " . $stmt->error;
+    }
+    $stmt->close();
 
-       // 然後刪除 orders 表中的行
-       $sql = "DELETE FROM orders WHERE orderID = ?";
-       $stmt = $conn->prepare($sql);
-       $stmt->bind_param('i', $orderID);
-       if ($stmt->execute()) {
-          echo "Delete succeeded";
-        } else {
-          echo "Error deleting order record: " . $stmt->error;
-        }
 
-       $stmt->close();
-       $conn->close();
-   }
+    // Retrieve order items
+    $addsql = "SELECT * FROM ordersitem WHERE orderID = ?";
+    $addstmt = $conn->prepare($addsql);
+    $addstmt->bind_param('i', $orderID);
+
+    if ($addstmt->execute()) {
+
+        $result = $addstmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $orderitem = $row['orderQty'];
+                $sparePartNum = $row['sparePartNum'];
+
+    
+                $selectItemSql = "SELECT * FROM item WHERE sparePartNum = ?";
+                $itemStmt = $conn->prepare($selectItemSql);
+                
+                $itemStmt->bind_param('i', $sparePartNum);
+                $itemStmt->execute();
+                $itemResult = $itemStmt->get_result();
+
+                if ($itemResult->num_rows > 0) {
+                    $itemRow = $itemResult->fetch_assoc();
+                    $oldQty = $itemRow['stockItemQty'];
+                    $newQty = $orderitem + $oldQty;
+
+                    $addItemSql = "UPDATE item SET stockItemQty = ? WHERE sparePartNum = ?";
+                    $updateStmt = $conn->prepare($addItemSql);
+                    
+                    $updateStmt->bind_param('ii', $newQty, $sparePartNum);
+                    if ($updateStmt->execute()) {
+                        echo "Item updated successfully";
+                    } else {
+                        echo "Error updating item: " . $conn->error;
+                    }
+                    $updateStmt->close();
+                }
+                $itemStmt->close();
+            }
+        } 
+    } else {
+        echo "Error retrieving order items: " . $conn->error;
+    }
+    $addstmt->close();
+
+
+    $conn->close();
+}
+
+
+
 ?>

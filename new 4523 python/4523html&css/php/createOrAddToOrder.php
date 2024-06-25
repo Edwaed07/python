@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get delivery address
     $getAddressSql = "SELECT deliveryAddress FROM dealer WHERE dealerID = ?";
     $stmt = $conn->prepare($getAddressSql);
-    $stmt->bind_param("i", $dealerID);
+    $stmt->bind_param("s", $dealerID);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if there is an existing order with 'created' status for this dealer
     $sql = "SELECT orderID FROM orders WHERE dealerID = ? AND orderStatus = 'created'";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $dealerID);
+    $stmt->bind_param("s", $dealerID);
     $stmt->execute();
     $result = $stmt->get_result();
 

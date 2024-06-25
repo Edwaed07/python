@@ -82,12 +82,20 @@ if ($result->num_rows > 0) {
         <td>".$row["deliveryAddress"]."</td>
         <td>".$row["deliveryDate"]."</td>
         <td>".$row["orderStatus"]."</td>
-        <td>".$row["shipCost"]."</td>
+        <td>".$row["shipCost"]."</td>";
 
-        <td>
-          <button onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
-        </td>
-        <td>
+        if ($row["orderStatus"] == "Cancelled"){
+            echo "<td>
+            <button disabled style='opacity: 0.5; pointer-events: none; onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
+            </td>";
+        }else{
+            echo "<td>
+            <button onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
+            </td>";
+        }
+
+        
+        echo "<td>
           <button onclick='orderDetail(".$row["orderID"].")'>Detail</button>
         </td>
         </tr>";

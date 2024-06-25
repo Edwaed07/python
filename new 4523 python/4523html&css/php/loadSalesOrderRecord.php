@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
         }
 
     function orderDetail(OrderID) { 
-        window.location.href = 'OrderDetail.php?OrderID=' + OrderID;
+        window.location.href = 'SalesOrderDetail.php?OrderID=' + OrderID;
     }
 
     function assign(OrderID) {
