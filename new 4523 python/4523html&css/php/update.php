@@ -42,13 +42,10 @@
 			<br>
 
 			<?php
-			// 開啟錯誤報告
-			error_reporting(E_ALL);
-			ini_set('display_errors', 1);
 
 			$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
 			session_start();
-			$dealerID = mysqli_real_escape_string($conn, $_COOKIE['DealerID']); // 防止SQL注入
+			$dealerID = $_COOKIE['DealerID'];
 
 			$sql = "SELECT * FROM dealer WHERE dealerID = ?";
 			$stmt = mysqli_prepare($conn, $sql);
@@ -63,13 +60,16 @@
 				echo "<p>Phone :  " . $row['contactNumber'] . "</p>";
 				echo "<p>Fax : " . $row['faxNumber'] . "</p>";
 				echo "<p>Address : " . $row['deliveryAddress'] . "</p>";
+				$contactNumber = $row['contactNumber'];
+				$faxNumber = $row['faxNumber'];
+				$deliveryAddress = $row['deliveryAddress'];
 			}
 
 			if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				$contactNumber = isset($_POST['tel']) ? $_POST['tel'] : '';
 				$faxNumber = isset($_POST['fax']) ? $_POST['fax'] : '';
 				$deliveryAddress = isset($_POST['addr']) ? $_POST['addr'] : '';
-				$password = isset($_POST['passwd']) ? password_hash($_POST['passwd'], PASSWORD_DEFAULT) : ''; // 加密密碼
+				$password = isset($_POST['passwd']) ? password_hash($_POST['passwd'], PASSWORD_DEFAULT) : '';
 
 				$sql = "UPDATE Dealer SET 
 							contactNumber = ?,
@@ -148,19 +148,19 @@
 			<div style="display: flex; gap: 20px;">
 				<div>
 					<label for='tel'>Contact Number:</label> <input id='tel' name='tel' pattern='^[0-9]{8}$' type=
-					'text'>
+					'text' value="<?php echo"$contactNumber" ?>">
 				</div>
 
 
 				<div>
 					<label for='fax'>Fax Number:</label> <input id='fax' name='fax' pattern='^[0-9]{8}$' type=
-					'text'>
+					'text' value="<?php echo"$faxNumber" ?>">
 				</div>
 			</div>
 			<div>
 				<label for='addr'>Delivery Address:</label> 
 
-				<textarea cols='50' id='addr' name='addr' rows='4'></textarea>
+				<textarea cols='50' id='addr' name='addr' rows='4'><?php echo"$deliveryAddress" ?></textarea>
 			</div>
 		</div>
 		<br>

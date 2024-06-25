@@ -1,14 +1,9 @@
 <?php
-// updateProfilo.php
 
-// 開啟錯誤報告
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// 假設您已經在其他地方啟動了session並設置了$_COOKIE['DealerID']
 $dealerID = $_COOKIE['DealerID'];
 
-// 連接數據庫
+
 $conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
 
 // 檢查POST請求是否存在
