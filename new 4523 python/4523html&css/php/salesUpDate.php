@@ -1,52 +1,47 @@
 <?php
+$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
+session_start();
+$salesManagerID = $_COOKIE['salesManagerID']; // 修改這裡
 
-			$conn = mysqli_connect('127.0.0.1', 'root', '', 'projectdb') or die(mysqli_connect_error());
-			session_start();
-			$dealerID = $_COOKIE['DealerID'];
+$sql = "SELECT * FROM salesmanager WHERE salesManagerID = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, 's', $salesManagerID);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
-			$sql = "SELECT * FROM dealer WHERE dealerID = ?";
-			$stmt = mysqli_prepare($conn, $sql);
-			mysqli_stmt_bind_param($stmt, 's', $dealerID);
-			mysqli_stmt_execute($stmt);
-			$result = mysqli_stmt_get_result($stmt);
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $managerName = $row['managerName']; // 修改這裡
+    $contactName  = $row['contactName'];
+    $contactNumber = $row['contactNumber'];
+}
 
-			if ($result && mysqli_num_rows($result) > 0) {
-				$row = mysqli_fetch_assoc($result);
-				$dealerName = $row['dealerName'];
-				$contactName  = $row['contactName'];
-				$contactNumber = $row['contactNumber'];
-				$faxNumber = $row['faxNumber'];
-				$deliveryAddress = $row['deliveryAddress'];
-			}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $contactNumber = $_POST['tel'];
+    $password = $_POST['passwd'];
 
-			if ($_SERVER["REQUEST_METHOD"] == "POST") {
-				$contactNumber = $_POST['tel']  ;
-				$faxNumber =  $_POST['fax'] ;
-				$deliveryAddress = $_POST['addr'] ;
-				$password = $_POST['passwd'] ;
-				
+    // 添加用戶輸入驗證和清理
 
-				$sql = "UPDATE Dealer SET 
-							contactNumber = ?,
-							faxNumber = ?,
-							deliveryAddress = ?,
-							password = ?
-						WHERE dealerID = ?";
+    $sql = "UPDATE SalesManager SET 
+                contactNumber = ?,
+                password = ?
+            WHERE salesManagerID = ?";
 
-				$stmt = mysqli_prepare($conn, $sql);
-				mysqli_stmt_bind_param($stmt, 'sssss', $contactNumber, $faxNumber, $deliveryAddress, $password, $dealerID);
-				mysqli_stmt_execute($stmt);
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 'sss', $contactNumber, $password, $salesManagerID);
+    mysqli_stmt_execute($stmt);
 
-				if (mysqli_stmt_affected_rows($stmt) > 0) {
-					$message = "profile updated successfully";
+    if (mysqli_stmt_affected_rows($stmt) > 0) {
+        $message = "profile updated successfully";
+    } else {
+        $message = "No changes were made.";
+    }
+    mysqli_stmt_close($stmt);
+    // 添加重定向以防止重複提交
+}
+mysqli_close($conn);
+?>
 
-				} else {
-					$message = "";
-				}
-				mysqli_stmt_close($stmt);
-			}
-			mysqli_close($conn);
-			?>
 
 <!DOCTYPE html>
 
@@ -97,15 +92,14 @@
 
 	<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" id="mySidebar" style=
 	"z-index:3;width:250px">
+
 		<div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
 			<img alt="User Icon" src="../photo/user.png" width="180px"><br>
 			<br>
 
-			<p><b><?php echo"$dealerName" ?></b></p>
+			<p><b><?php echo"$managerName" ?></b></p>
 			<p><b><?php echo"$contactName" ?></b></p>
 			<p>Phone :  <?php echo"$contactNumber" ?></p>
-			<p>Fax : <?php echo"$faxNumber" ?></p>
-			<p>Address : <?php echo"$deliveryAddress"?></p>
 
 
 		</div>
@@ -131,26 +125,43 @@
 
 	<div class="w3-main" style="margin-left:250px">
 		<!-- Push down content on small screens -->
-
-
+		 
 		<div class="w3-hide-large" style="margin-top:83px">
 		</div>
 		<!-- Top header -->
 
 
 		<header class="w3-container w3-xlarge">
-			<a href="home.php" style="text-decoration: none;"><img class="logo" src="../photo/logo.png"
+			<a href="../item.html" style="text-decoration: none;"><img class="logo" src="../photo/logo.png"
 			style="width: 88px; height: auto; float: left; margin-right: 10px;margin-left: 10px;"></a>
 
 			<p class="w3-left">Smart & Luxury Motor Company</p>
 
 
-			<p class="w3-right"><a href="update.php" style="text-decoration: none;"><img height="auto" src=
-			"../photo/userin.png" width="32"></a> <a href="../carlist.html" style=
-			"text-decoration: none;"><img height="auto" src="../photo/list.png" width="35"></a> <a href=
-			"../order%20record.html" style="text-decoration: none;"><img height="auto" src=
-			"../photo/record.png" width="25"></a> <a href="logout.php" style=
-			"text-decoration: none;"><img height="auto" src="../photo/logout.png" width="35"></a></p>
+			<p class="w3-right">
+
+
+			<a href="salesUpDate.php" style="text-decoration: none;">
+			<img src="../photo/userin.png" width="32" height="auto">
+			</a>
+
+			<a href="../report.html" style="text-decoration: none;">
+			<img src="../photo/report.png" width="25" height="25">
+			</a>
+
+			<a href="../item.html" style="text-decoration: none;">
+			<img src="../photo/stock.png" width="25" height="25">
+			</a>
+
+			<a href="../Sales Order records.html" style="text-decoration: none;">
+			<img src="../photo/record.png" width="25" height="auto">
+			</a>
+
+			<a href="logout.php" style="text-decoration: none;">
+			<img src="../photo/logout.png" width="35" height="auto">
+			</a>
+
+			</p>
 		</header>
 
 
@@ -175,16 +186,6 @@
 					'text' value="<?php echo"$contactNumber" ?>">
 				</div>
 
-
-				<div>
-					<label for='fax'>Fax Number:</label> <input id='fax' name='fax' pattern='^[0-9]{8}$' type=
-					'text' value="<?php echo"$faxNumber" ?>">
-				</div>
-			</div>
-			<div>
-				<label for='addr'>Delivery Address:</label> 
-
-				<textarea cols='50' id='addr' name='addr' rows='4'><?php echo"$deliveryAddress" ?></textarea>
 			</div>
 		</div>
 		<br>
