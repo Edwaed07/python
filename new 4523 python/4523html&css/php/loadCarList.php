@@ -119,10 +119,10 @@ if ($result->num_rows > 0) {
               </div>
               <br>
           <div id=\"divTotal\">
-              <p><b>Total Quantity: </b><span id=\"totalQty\"></span></p>
-              <p><b>Total Weight: </b><span id=\"totalWeight\"></span></p>
+              <p><b>Total Quantity : ".$totalQty."</b><span id=\"totalQty\"></span></p>
+              <p><b>Total Weight : ".$totalWeight."</b><span id=\"totalWeight\"></span></p>
               <table id=\"total-display\">
-                  <tr><th>Subtotal</th><td id=\"subtotal\"></td></tr>
+                  <tr><th>Item total<td>$".$totalPrice."</th><td id=\"subtotal\"></td></tr>
                   <tr><th>Delivery Fee</th><td id=\"deliveryFee\"></td></tr>
                   <tr><th>Total</th><td id=\"total\"></td></tr>
               </table>
