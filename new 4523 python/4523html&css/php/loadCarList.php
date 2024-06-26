@@ -31,22 +31,42 @@ if ($result->num_rows > 0) {
     $stmt->execute();
     $result = $stmt->get_result(); // Get the result set from the executed statement
     $totalPrice = 0;
+    $totalWeight = 0;
+    $totalQty = 0;
 
     if ($result->num_rows > 0) {
         echo "<table>
                 <tr>
+                    <th>Image</th>
                     <th>Product</th>
                     <th>Quantity</th>
+                    <th>Weight</th>
                     <th>Price</th>
                     <th></th>
                 </tr>";
 
         // Output data of each row
         while ($row = $result->fetch_assoc()) {
+
+            $selectItemSql = "SELECT * FROM item WHERE sparePartNum = " . $row["sparePartNum"];
+            $itemResult = $conn->query($selectItemSql);
+            
+    
+            if ($itemResult->num_rows > 0) {
+                $itemRow = $itemResult->fetch_assoc();
+                $img = $itemRow['sparePartImage'];
+			          $path = "../sample images/";
+                $totalWeight += $itemRow['weight'] * $row["orderQty"];
+            }
+
+
             $totalPrice += $row["orderQty"] * $row["sparePartOrderPrice"];
+            $totalQty += $row["orderQty"];
             echo "<tr>
+                    <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
                     <td>".$row["sparePartNum"]."</td>
                     <td>".$row["orderQty"]."</td>
+                    <td>".$itemRow["weight"]."</td>
                     <td>".$row["sparePartOrderPrice"]."</td>
                     <td>
                         <button onclick='deleteOrdersItem(".$row["sparePartNum"].")'>Delete</button>
@@ -55,12 +75,16 @@ if ($result->num_rows > 0) {
                   </tr>";
         }
         
-        echo "<tr>
-                <td>Total Price:</td>
-                <td></td>
-                <td>".$totalPrice."</td>
-                <td></td>
-              </tr>
+            echo "<tr>
+                    <td>Total :</td>
+                    <td></td>
+                    <td>".$totalQty."</td>
+                    <td>".$totalWeight."</td>
+                    <td>".$totalPrice."</td>
+                    <td></td>
+                </tr>
+
+                
               </table>
               <br> <br> ";
 
