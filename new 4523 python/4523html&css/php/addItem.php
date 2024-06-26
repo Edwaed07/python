@@ -73,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </script>
 
+<h1>Insert Item</h1>
 
 <body>
     <div class="container">
@@ -83,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>
         <?php endif; ?>
 
-        <h1>Insert Item</h1>
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <label>Spare Part Number :</label>
             <input type="text" name="partNum" value="<?php echo $partNum ?> " readonly>
@@ -122,14 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>Price:</label>
             <input type="text" name="price" required>
             <br></br>
-
-
-            <br>
             <br>
 
             <div class="button-container">
 
-                <input type="button" value="Cancel" onclick="backToItem()">
+                <input type="button" value="Back" onclick="backToItem()">
                 <input type="reset" value="Clear">
                 <input type="submit" value="Submit">
 
