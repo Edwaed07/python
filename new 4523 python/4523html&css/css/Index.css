@@ -9,7 +9,7 @@ body {
 }
 
 header {
-	background: url('../photo/wallpaper.jpg');
+	background: url('photo/wallpaper.jpg');
 	text-align: center;
 	width: 100%;
 	height: auto;
