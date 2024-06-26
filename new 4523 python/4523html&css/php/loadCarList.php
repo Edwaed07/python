@@ -24,7 +24,7 @@ $result = $rs->get_result(); // Get the result set from the executed statement
 if ($result->num_rows > 0) {
     $col = $result->fetch_assoc();
     $orderID = $col['orderID'];
-    
+
     $sql = "SELECT * FROM ordersitem WHERE orderID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $orderID);
@@ -50,12 +50,12 @@ if ($result->num_rows > 0) {
 
             $selectItemSql = "SELECT * FROM item WHERE sparePartNum = " . $row["sparePartNum"];
             $itemResult = $conn->query($selectItemSql);
-            
-    
+
+
             if ($itemResult->num_rows > 0) {
                 $itemRow = $itemResult->fetch_assoc();
                 $img = $itemRow['sparePartImage'];
-			          $path = "../sample images/";
+                $path = "../sample images/";
                 $totalWeight += $itemRow['weight'] * $row["orderQty"];
             }
 
@@ -63,24 +63,24 @@ if ($result->num_rows > 0) {
             $totalPrice += $row["orderQty"] * $row["sparePartOrderPrice"];
             $totalQty += $row["orderQty"];
             echo "<tr>
-                    <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
-                    <td>".$row["sparePartNum"]."</td>
-                    <td>".$row["orderQty"]."</td>
-                    <td>".$itemRow["weight"]."</td>
-                    <td>".$row["sparePartOrderPrice"]."</td>
+                    <td><img src='" . $path . $img . "' style='width:50px; height:50px'></td>
+                    <td>" . $row["sparePartNum"] . "</td>
+                    <td>" . $row["orderQty"] . "</td>
+                    <td>" . $itemRow["weight"] . "</td>
+                    <td>" . $row["sparePartOrderPrice"] . "</td>
                     <td>
-                        <button onclick='deleteOrdersItem(".$row["sparePartNum"].")'>Delete</button>
+                        <button onclick='deleteOrdersItem(" . $row["sparePartNum"] . ")'>Delete</button>
                         
                     </td>
                   </tr>";
         }
-        
-            echo "<tr>
+
+        echo "<tr>
                     <td>Total :</td>
                     <td></td>
-                    <td>".$totalQty."</td>
-                    <td>".$totalWeight."</td>
-                    <td>".$totalPrice."</td>
+                    <td>" . $totalQty . "</td>
+                    <td>" . $totalWeight . "</td>
+                    <td>" . $totalPrice . "</td>
                     <td></td>
                 </tr>
 
@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
               </table>
               <br> <br> ";
 
-              echo "<div style=\"display: flex; justify-content: space-between; align-items: flex-start;\">
+        echo "<div style=\"display: flex; justify-content: space-between; align-items: flex-start;\">
               <div id=\"shippingOpt\" style=\"flex-grow: 1;\">
                 <h3>Shipping Options</h3>
                   <div id=\"shipping-container\" style=\"display: flex;\">
@@ -114,15 +114,15 @@ if ($result->num_rows > 0) {
           <br>
                         <div style=\"flex-grow: 1;\">
                                         <h3>Choose</h3>
-                  <label for=\"qty\"><input type=\"radio\" name=\"shipping\" id=\"qty\" checked onclick=\"getDeliveryFee('quantity')\"> Quantity</label>
+                  <label for=\"qty\"><input type=\"radio\" name=\"shipping\" id=\"qty\" onclick=\"getDeliveryFee('quantity')\"> Quantity</label>
                   <label for=\"weight\"><input type=\"radio\" name=\"shipping\" id=\"weight\" onclick=\"getDeliveryFee('weight')\"> Weight</label>
               </div>
               <br>
           <div id=\"divTotal\">
-              <p><b>Total Quantity : ".$totalQty."</b><span id=\"totalQty\"></span></p>
-              <p><b>Total Weight : ".$totalWeight."</b><span id=\"totalWeight\"></span></p>
+              <p><b>Total Quantity : </b><span id=\"totalQty\">" . $totalQty . "</span></p>
+              <p><b>Total Weight : </b><span id=\"totalWeight\">" . $totalWeight . "</span></p>
               <table id=\"total-display\">
-                  <tr><th>Item total<td>$".$totalPrice."</th><td id=\"subtotal\"></td></tr>
+                  <tr><th>Item total</th><td id=\"subtotal\">$" . $totalPrice . "</td></tr>
                   <tr><th>Delivery Fee</th><td id=\"deliveryFee\"></td></tr>
                   <tr><th>Total</th><td id=\"total\"></td></tr>
               </table>
@@ -139,12 +139,14 @@ if ($result->num_rows > 0) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="../css/carlist.css" type="text/css">
 </head>
+
 <body>
     <script>
-        function deleteOrdersItem(sparePartNum) { 
+        function deleteOrdersItem(sparePartNum) {
             if (confirm('Are you sure you want to delete this item?')) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'deleteCarListItem.php', true);
@@ -160,7 +162,7 @@ if ($result->num_rows > 0) {
                 xhr.send('sparePartNum=' + sparePartNum);
             }
         }
-        function SendOrder(orderID) { 
+        function SendOrder(orderID) {
             if (confirm('Are you sure you want send this order?')) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'SendOrder.php', true);
@@ -179,7 +181,7 @@ if ($result->num_rows > 0) {
 
         function getDeliveryFee(mode) {
             // 獲取用戶輸入的數量或重量
-            var value = mode === 'quantity' ? document.getElementById('totalQty').textContent : document.getElementById('totalWeight').textContent;
+            var value = mode === 'quantity' ? document.getElementById('totalQty').innerHTML : document.getElementById('totalWeight').innerHTML;
 
             // 構建API請求URL
             var apiUrl = 'http://127.0.0.1:8080/ship_cost_api/' + mode + '/' + value;
@@ -190,7 +192,7 @@ if ($result->num_rows > 0) {
                 .then(data => {
                     if (data.result === 'accepted') {
                         // 更新運輸成本到用戶界面
-                        document.getElementById('deliveryFee').textContent = 'HKD ' + data.cost;
+                        document.getElementById('deliveryFee').textContent = '$ ' + data.cost;
                         // 更新總計
                         updateTotal();
                     } else {
@@ -203,18 +205,27 @@ if ($result->num_rows > 0) {
 
         function updateTotal() {
             // 獲取小計和運輸成本
-            var subtotal = parseFloat(document.getElementById('subtotal').textContent);
-            var deliveryFee = parseFloat(document.getElementById('deliveryFee').textContent.replace('HKD ', ''));
-            
-            // 計算總計
-            var total = subtotal + deliveryFee;
-            document.getElementById('total').textContent = 'HKD ' + total.toFixed(2);
+            var subtotalText = document.getElementById('subtotal').textContent;
+            var deliveryFeeText = document.getElementById('deliveryFee').textContent;
+
+            // 檢查小計和運輸成本是否存在
+            var subtotal = parseFloat(subtotalText.replace('$', ''));
+            var deliveryFee = parseFloat(deliveryFeeText.replace('$ ', ''));
+            // 確保小計和運輸成本是有效數字
+            if (!isNaN(subtotal) && !isNaN(deliveryFee)) {
+                // 計算總計
+                var total = subtotal + deliveryFee;
+                document.getElementById('total').innerHTML = '$ ' + total.toFixed(2);
+            } else {
+                console.error('Subtotal or delivery fee is not a valid number.');
+            }
         }
 
         // 確保在頁面加載時更新總計
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updateTotal();
         });
     </script>
 </body>
+
 </html>

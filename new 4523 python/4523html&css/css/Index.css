@@ -9,7 +9,7 @@ body {
 }
 
 header {
-	background: url('photo/wallpaper.jpg');
+	background: url('../photo/wallpaper.jpg');
 	text-align: center;
 	width: 100%;
 	height: auto;
@@ -26,7 +26,7 @@ header .overlay {
 	padding: 250px;
 	color: #ECEEE9;
 	text-shadow: 1px 1px 1px #333;
-	background-image: linear-gradient( 220deg, #ECEEE9 3%, #fd5e086b 60%);
+	background-image: linear-gradient(220deg, #ECEEE9 3%, #fd5e086b 60%);
 }
 
 h1 {
