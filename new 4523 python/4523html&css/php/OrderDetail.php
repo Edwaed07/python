@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM orders where orderID =".$orderId;
+$sql = "SELECT * FROM orders where orderID =" . $orderId;
 $result = $conn->query($sql);
 $column = $result->fetch_assoc();
 $OrderID = $column["orderID"];
@@ -43,27 +43,26 @@ $column = $result->fetch_assoc();
 $SalesManagerContactName = $column["contactName"];
 $SalesManagerNumber = $column["contactNumber"];
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href="../css/Update Order Form.css" rel="stylesheet" type="text/css">
-	<script>
-	       
-	   function resizeIframe(iframe) {
-	       iframe.style.height = iframe.contentWindow.document.body.scrollHeight  + 0 +  'px';
-	   }
+    <link href="../css/Update Order Form.css" rel="stylesheet" type="text/css">
+    <script>
 
-	   function backToOrderRecord() {
-	           parent.location.href = '../order record.html';
-	   }
+        function resizeIframe(iframe) {
+            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 0 + 'px';
+        }
 
-	</script>
-	<title></title>
+        function backToOrderRecord() {
+            parent.location.href = '../order record.html';
+        }
+
+    </script>
+    <title></title>
 </head>
+
 <body>
     <div class="container">
         <h1>Order Detail</h1>
@@ -71,31 +70,42 @@ $SalesManagerNumber = $column["contactNumber"];
             <!-- Left Table -->
             <div style="width: 50%;">
                 <form>
-                    <label>Order ID :</label> <input name="OrderID" readonly type="text" value="<?php echo $OrderID ?>"><br><br>
-                    <label>Dealer ID :</label> <input name="DealerID" readonly type="text" value="<?php echo $DealerID ?>"><br><br>
-                    <label>Sales Manager ID :</label> <input name="SalesManagerID" readonly type="text" value="<?php echo $SalesManagerID ?>"><br><br>
-                    <label>Manager’s Contact Name :</label> <input name="SalesManagerContactName" readonly type="text" value="<?php echo $SalesManagerContactName ?>"><br><br>
-                    <label>Manager’s Contact Number :</label> <input name="SalesManagerNumber" readonly type="text" value="<?php echo $SalesManagerNumber ?>"><br><br>
-                    <label>Order date and time:</label> <input name="OrderDateAndTime" readonly type="text" value="<?php echo $OrderDateAndTime ?>"><br><br>
-                    <label>Delivery address</label> 
-                    <textarea cols="54" name="DeliveryAddress" readonly rows="5"><?php echo $DeliveryAddress; ?></textarea><br><br>
+                    <label>Order ID :</label> <input name="OrderID" readonly type="text"
+                        value="<?php echo $OrderID ?>"><br><br>
+                    <label>Dealer ID :</label> <input name="DealerID" readonly type="text"
+                        value="<?php echo $DealerID ?>"><br><br>
+                    <label>Sales Manager ID :</label> <input name="SalesManagerID" readonly type="text"
+                        value="<?php echo $SalesManagerID ?>"><br><br>
+                    <label>Manager’s Contact Name :</label> <input name="SalesManagerContactName" readonly type="text"
+                        value="<?php echo $SalesManagerContactName ?>"><br><br>
+                    <label>Manager’s Contact Number :</label> <input name="SalesManagerNumber" readonly type="text"
+                        value="<?php echo $SalesManagerNumber ?>"><br><br>
+                    <label>Order date and time:</label> <input name="OrderDateAndTime" readonly type="text"
+                        value="<?php echo $OrderDateAndTime ?>"><br><br>
+                    <label>Delivery address</label>
+                    <textarea cols="54" name="DeliveryAddress" readonly
+                        rows="5"><?php echo $DeliveryAddress; ?></textarea><br><br>
                 </form>
             </div>
 
             <!-- Right Table -->
             <div style="width: 50%;">
                 <form>
-                    <label>Delivery date</label> <input name="DeliveryDate" readonly type="text" value="<?php echo $DeliveryDate ?>"><br><br>
-                    <iframe frameborder="0" height="100%" onload="resizeIframe(this)" src="loadOrderItem.php?orderId=<?php echo $OrderID; ?>" width="100%"></iframe>
-                    <label>Shipping cost</label> <input name="ShippingCost" readonly type="text" value="<?php echo $ShippingCost ?>"><br><br>
-                    <label>Order status</label> <input name="Order status" readonly type="text" value="<?php echo $OrderStatus ?>"><br><br>
+                    <label>Delivery date</label> <input name="DeliveryDate" readonly type="text"
+                        value="<?php echo $DeliveryDate ?>"><br><br>
+                    <iframe frameborder="0" height="100%" onload="resizeIframe(this)"
+                        src="loadOrderItem.php?orderId=<?php echo $OrderID; ?>" width="100%"></iframe>
+                    <label>Shipping cost</label> <input name="ShippingCost" readonly type="text"
+                        value="<?php echo $ShippingCost ?>"><br><br>
+                    <label>Order status</label> <input name="Order status" readonly type="text"
+                        value="<?php echo $OrderStatus ?>"><br><br>
 
                 </form>
             </div>
         </div>
         <div class="button-container">
-        <input onclick="backToOrderRecord()" type="button" value="Back">
-    </div>
+            <input onclick="backToOrderRecord()" type="button" value="Back">
+        </div>
 </body>
 
 </html>

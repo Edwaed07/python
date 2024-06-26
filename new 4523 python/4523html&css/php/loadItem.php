@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-    <link rel="stylesheet" type="text/css" href="../css/item.css">
+<link rel="stylesheet" type="text/css" href="../css/item.css">
 
 <?php
 
@@ -20,8 +20,6 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM Item";
 $result = $conn->query($sql);
-
-
 
 if ($result->num_rows > 0) {
     echo "
@@ -70,26 +68,26 @@ if ($result->num_rows > 0) {
           <button onclick='redirectToNewPage()' >Add Item</button>
           
     </th>
-    </tr>"; 
+    </tr>";
 
     // Output data of each row
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $img = $row['sparePartImage'];
         $path = "../sample images/";
 
         echo "<tr>
-        <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
-        <td>".$row["sparePartNum"]."</td>
-        <td>".$row["sparePartCategory"]."</td>
-        <td>".$row["sparePartName"]."</td>
-        <td>".$row["weight"]."</td>
-        <td>".$row["price"]."</td>
-        <td>".$row["stockItemQty"]."</td>
+        <td><img src='" . $path . $img . "' style='width:50px; height:50px'></td>
+        <td>" . $row["sparePartNum"] . "</td>
+        <td>" . $row["sparePartCategory"] . "</td>
+        <td>" . $row["sparePartName"] . "</td>
+        <td>" . $row["weight"] . "</td>
+        <td>" . $row["price"] . "</td>
+        <td>" . $row["stockItemQty"] . "</td>
         <td>
-          <button onclick='deleteItem(".$row["sparePartNum"].")'>Delete</button>
+          <button onclick='deleteItem(" . $row["sparePartNum"] . ")'>Delete</button>
         </td>
         <td>
-          <button onclick='editItem(".$row["sparePartNum"].")'>Edit item</button>
+          <button onclick='editItem(" . $row["sparePartNum"] . ")'>Edit item</button>
         </td>
         </tr>";
     }
@@ -101,6 +99,5 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 ?>
-
 
 </html>

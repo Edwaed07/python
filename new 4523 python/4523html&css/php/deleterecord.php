@@ -1,22 +1,18 @@
 <?php
-   if (isset($_POST['orderID'])) {
+if (isset($_POST['orderID'])) {
 
-        $orderID = $_POST['orderID'];
+    $orderID = $_POST['orderID'];
 
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "";
-        $dbname = "projectdb";
-        
-        $conn = new mysqli($servername, $username, $password, $dbname);
-            
-       if ($conn->connect_error) {
-           die("Connection failed: " . $conn->connect_error);
-       }
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $dbname = "projectdb";
 
-   
-       
-       
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
     $sql = "UPDATE orders SET orderStatus = 'Cancelled' WHERE orderID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $orderID);
@@ -41,10 +37,10 @@
                 $orderitem = $row['orderQty'];
                 $sparePartNum = $row['sparePartNum'];
 
-    
+
                 $selectItemSql = "SELECT * FROM item WHERE sparePartNum = ?";
                 $itemStmt = $conn->prepare($selectItemSql);
-                
+
                 $itemStmt->bind_param('i', $sparePartNum);
                 $itemStmt->execute();
                 $itemResult = $itemStmt->get_result();
@@ -56,7 +52,7 @@
 
                     $addItemSql = "UPDATE item SET stockItemQty = ? WHERE sparePartNum = ?";
                     $updateStmt = $conn->prepare($addItemSql);
-                    
+
                     $updateStmt->bind_param('ii', $newQty, $sparePartNum);
                     if ($updateStmt->execute()) {
                         echo "Item updated successfully";
@@ -67,7 +63,7 @@
                 }
                 $itemStmt->close();
             }
-        } 
+        }
     } else {
         echo "Error retrieving order items: " . $conn->error;
     }
@@ -76,7 +72,4 @@
 
     $conn->close();
 }
-
-
-
 ?>

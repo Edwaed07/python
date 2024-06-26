@@ -1,10 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 
-# 確保已安裝flask和flask-cors，如果安裝失敗，請在命令前加上[py -m]
-# 在這個py文件夾中，設置FLASK_APP為shipping.py
-# 使用命令flask run --port=8080來運行服務器，如果失敗，請在命令前加上[py -m]
-
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 

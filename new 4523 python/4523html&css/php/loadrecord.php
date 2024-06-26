@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-    <link rel="stylesheet" type="text/css" href="../css/item.css">
+<link rel="stylesheet" type="text/css" href="../css/item.css">
 
 <?php
 
@@ -9,7 +9,7 @@ $servername = "127.0.0.1";
 $username = "root";
 $password = "";
 $dbname = "projectdb";
-$dealerID=$_COOKIE['DealerID'];
+$dealerID = $_COOKIE['DealerID'];
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -69,34 +69,34 @@ if ($result->num_rows > 0) {
     <th></th>
     <th></th>
 
-    </tr>"; 
+    </tr>";
 
     // Output data of each row
-    while($row = $result->fetch_assoc()) {
-        
-        echo "<tr>
-        <td>".$row["orderID"]."</td>
-        <td>".$row["dealerID"]."</td>
-        <td>".$row["salesManagerID"]."</td>
-        <td>".$row["orderDateTime"]."</td>
-        <td>".$row["deliveryAddress"]."</td>
-        <td>".$row["deliveryDate"]."</td>
-        <td>".$row["orderStatus"]."</td>
-        <td>".$row["shipCost"]."</td>";
+    while ($row = $result->fetch_assoc()) {
 
-        if ($row["orderStatus"] == "Cancelled"){
+        echo "<tr>
+        <td>" . $row["orderID"] . "</td>
+        <td>" . $row["dealerID"] . "</td>
+        <td>" . $row["salesManagerID"] . "</td>
+        <td>" . $row["orderDateTime"] . "</td>
+        <td>" . $row["deliveryAddress"] . "</td>
+        <td>" . $row["deliveryDate"] . "</td>
+        <td>" . $row["orderStatus"] . "</td>
+        <td>" . $row["shipCost"] . "</td>";
+
+        if ($row["orderStatus"] == "Cancelled") {
             echo "<td>
-            <button disabled style='opacity: 0.5; pointer-events: none; onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
+            <button disabled style='opacity: 0.5; pointer-events: none; onclick='deleteorderRecord(" . $row["orderID"] . ")'>Delete</button>
             </td>";
-        }else{
+        } else {
             echo "<td>
-            <button onclick='deleteorderRecord(".$row["orderID"].")'>Delete</button>
+            <button onclick='deleteorderRecord(" . $row["orderID"] . ")'>Delete</button>
             </td>";
         }
 
-        
+
         echo "<td>
-          <button onclick='orderDetail(".$row["orderID"].")'>Detail</button>
+          <button onclick='orderDetail(" . $row["orderID"] . ")'>Detail</button>
         </td>
         </tr>";
     }

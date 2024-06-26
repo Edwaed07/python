@@ -23,21 +23,21 @@ $orderprice = 0;
 
 
 if ($result->num_rows > 0) {
-    if ($sortBy == 'sparePartCategory'){
-    echo "
+    if ($sortBy == 'sparePartCategory') {
+        echo "
     <select name='order' id='order'>
     <option value='sparePartCategory' selected>Category</option>
     <option value='orderQty' >quantity</option>
     <option value='sparePartOrderPrice'>Price</option>
     </select>";
-    } else if ($sortBy == 'orderQty'){
+    } else if ($sortBy == 'orderQty') {
         echo "
         <select name='order' id='order'>
         <option value='sparePartCategory'>Category</option>
         <option value='orderQty' selected>quantity</option>
         <option value='sparePartOrderPrice'>Price</option>
         </select>";
-    }else if ($sortBy == 'sparePartOrderPrice'){
+    } else if ($sortBy == 'sparePartOrderPrice') {
         echo "
         <select name='order' id='order'>
         <option value='sparePartCategory'>Category</option>
@@ -56,27 +56,27 @@ if ($result->num_rows > 0) {
     <th>Category</th>
     <th>Order Quantity</th>
     <th>Order Price</th>
-    </tr>"; 
+    </tr>";
 
     // Output data of each row
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
 
         $selectItemSql = "SELECT * FROM item WHERE sparePartNum = " . $row["sparePartNum"];
-            $itemResult = $conn->query($selectItemSql);
-    
-            if ($itemResult->num_rows > 0) {
-                $itemRow = $itemResult->fetch_assoc();
-                $img = $itemRow['sparePartImage'];
-			          $path = "../sample images/";
-                $name = $itemRow['sparePartName'];
-            }
+        $itemResult = $conn->query($selectItemSql);
+
+        if ($itemResult->num_rows > 0) {
+            $itemRow = $itemResult->fetch_assoc();
+            $img = $itemRow['sparePartImage'];
+            $path = "../sample images/";
+            $name = $itemRow['sparePartName'];
+        }
 
         echo "<tr>
-        <td><img src='". $path . $img ."' style='width:50px; height:50px'></td>
-        <td>".$name."</td>
-        <td>".$row["sparePartCategory"]."</td>
-        <td>".$row["orderQty"]."</td>
-        <td>".$row["sparePartOrderPrice"]."</td>
+        <td><img src='" . $path . $img . "' style='width:50px; height:50px'></td>
+        <td>" . $name . "</td>
+        <td>" . $row["sparePartCategory"] . "</td>
+        <td>" . $row["orderQty"] . "</td>
+        <td>" . $row["sparePartOrderPrice"] . "</td>
         ";
         $orderprice += $row["orderQty"] * $row["sparePartOrderPrice"];
     }
@@ -88,27 +88,23 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
-
-
 $conn->close();
 
 ?>
 
-
-
 <!DOCTYPE html>
-<html> 
+<html>
 
-    <link rel="stylesheet" type="text/css" href="../css/item.css">
+<link rel="stylesheet" type="text/css" href="../css/item.css">
 
-    <script>
-        function sortTable(order) {
-            const select = document.getElementById('order');
-            const sortBy = select.value;
-            const orderId = new URLSearchParams(window.location.search).get('orderId');
-            window.location.href = `?orderId=${orderId}&sortBy=${sortBy}&order=${order}`;
-        }
-    </script>
+<script>
+    function sortTable(order) {
+        const select = document.getElementById('order');
+        const sortBy = select.value;
+        const orderId = new URLSearchParams(window.location.search).get('orderId');
+        window.location.href = `?orderId=${orderId}&sortBy=${sortBy}&order=${order}`;
+    }
+</script>
 
 
 </html>

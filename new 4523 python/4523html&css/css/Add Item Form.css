@@ -1,50 +1,51 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  label {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  input[type="reset"] ,
-  input[type="button"] ,
-  input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    background-color: #506067;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: 20px;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #506067;
-  }
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #506067;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #506067;
+}
 
 .radio-group {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* 在您的 CSS 文件中添加這些樣式 */
@@ -53,8 +54,10 @@ body {
   flex-wrap: wrap;
 }
 
-.left-side, .right-side {
-  flex: 1 1 50%; /* 每側佔據 50% 的寬度 */
+.left-side,
+.right-side {
+  flex: 1 1 50%;
+  /* 每側佔據 50% 的寬度 */
 }
 
 /* 確保 iframe 也是響應式的 */
@@ -63,5 +66,3 @@ iframe {
   height: auto;
   border: none;
 }
-
-

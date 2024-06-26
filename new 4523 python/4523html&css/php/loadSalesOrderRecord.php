@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-    <link rel="stylesheet" type="text/css" href="../css/Sales Order records.css">
+<link rel="stylesheet" type="text/css" href="../css/Sales Order records.css">
 
 
 <?php
@@ -70,44 +70,44 @@ if ($result->num_rows > 0) {
     <th></th>
     <th></th>
     <th></th>
-    </tr>"; 
+    </tr>";
 
     // Output data of each row
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         echo "<tr>
-        <td>".$row["orderID"]."</td>
-        <td>".$row["dealerID"]."</td>
-        <td>".$row["salesManagerID"]."</td>
-        <td>".$row["orderDateTime"]."</td>
-        <td>".$row["deliveryDate"]."</td>
-        <td>".$row["orderStatus"]."</td>";
-        if ($row["salesManagerID"] == "none"){
-            echo"
+        <td>" . $row["orderID"] . "</td>
+        <td>" . $row["dealerID"] . "</td>
+        <td>" . $row["salesManagerID"] . "</td>
+        <td>" . $row["orderDateTime"] . "</td>
+        <td>" . $row["deliveryDate"] . "</td>
+        <td>" . $row["orderStatus"] . "</td>";
+        if ($row["salesManagerID"] == "none") {
+            echo "
             <td>
-                <button onclick='assign(".$row["orderID"].")'>Assign</button>
+                <button onclick='assign(" . $row["orderID"] . ")'>Assign</button>
             </td>
             <td>
-                <button disabled style='opacity: 0.5; pointer-events: none; onclick='updateOrder(".$row["orderID"].")'>Update</button>
+                <button disabled style='opacity: 0.5; pointer-events: none; onclick='updateOrder(" . $row["orderID"] . ")'>Update</button>
             </td>";
-        }else if ($row["salesManagerID"] == $mamagerID){
-            echo"
+        } else if ($row["salesManagerID"] == $mamagerID) {
+            echo "
             <td>
-                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='assign(".$row["orderID"].")'>Assign</button>
+                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='assign(" . $row["orderID"] . ")'>Assign</button>
             </td>
             <td>
-                <button onclick='updateOrder(".$row["orderID"].")'>Update</button>
+                <button onclick='updateOrder(" . $row["orderID"] . ")'>Update</button>
             </td>";
-        }else{
-            echo"
+        } else {
+            echo "
             <td>
-                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='assign(".$row["orderID"].")'>Assign</button>
+                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='assign(" . $row["orderID"] . ")'>Assign</button>
             </td>
             <td>
-                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='updateOrder(".$row["orderID"]." disabled)'>Update</button>
+                <button disabled style='opacity: 0.5; pointer-events: none;' onclick='updateOrder(" . $row["orderID"] . " disabled)'>Update</button>
             </td>";
         }
-        echo"<td>
-          <button onclick='orderDetail(".$row["orderID"].")'>Order detail</button>
+        echo "<td>
+          <button onclick='orderDetail(" . $row["orderID"] . ")'>Order detail</button>
         </td>
         </tr>";
     }

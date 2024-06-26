@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $currentDate = new DateTime();
         $currentDate->modify('+1 month');
         $deliveryDate = $currentDate->format('Y-m-d');
-        $stmt->bind_param("issssssi", $orderID, $dealerID, $salesManagerID, $date, $deliveryAddress,$deliveryDate, $orderStatus, $shipCost);
+        $stmt->bind_param("issssssi", $orderID, $dealerID, $salesManagerID, $date, $deliveryAddress, $deliveryDate, $orderStatus, $shipCost);
 
         if ($stmt->execute()) {
             echo json_encode(['status' => 'success', 'message' => 'Order inserted successfully']);
@@ -136,5 +136,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 ?>
-
-

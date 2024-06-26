@@ -180,23 +180,19 @@ if ($result->num_rows > 0) {
         }
 
         function getDeliveryFee(mode) {
-            // 獲取用戶輸入的數量或重量
+            // Get the quantity or weight entered by the user
             var value = mode === 'quantity' ? document.getElementById('totalQty').innerHTML : document.getElementById('totalWeight').innerHTML;
 
-            // 構建API請求URL
             var apiUrl = 'http://127.0.0.1:8080/ship_cost_api/' + mode + '/' + value;
 
-            // 發送GET請求到Flask應用程序
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
                     if (data.result === 'accepted') {
-                        // 更新運輸成本到用戶界面
+                        // Update shipping cost to user interface
                         document.getElementById('deliveryFee').textContent = '$ ' + data.cost;
-                        // 更新總計
                         updateTotal();
                     } else {
-                        // 處理錯誤情況
                         alert(data.reason);
                     }
                 })
@@ -204,16 +200,14 @@ if ($result->num_rows > 0) {
         }
 
         function updateTotal() {
-            // 獲取小計和運輸成本
+            // Get subtotal and shipping cost
             var subtotalText = document.getElementById('subtotal').textContent;
             var deliveryFeeText = document.getElementById('deliveryFee').textContent;
 
-            // 檢查小計和運輸成本是否存在
             var subtotal = parseFloat(subtotalText.replace('$', ''));
             var deliveryFee = parseFloat(deliveryFeeText.replace('$ ', ''));
-            // 確保小計和運輸成本是有效數字
             if (!isNaN(subtotal) && !isNaN(deliveryFee)) {
-                // 計算總計
+                // Calculate total
                 var total = subtotal + deliveryFee;
                 document.getElementById('total').innerHTML = '$ ' + total.toFixed(2);
             } else {
@@ -221,7 +215,6 @@ if ($result->num_rows > 0) {
             }
         }
 
-        // 確保在頁面加載時更新總計
         document.addEventListener('DOMContentLoaded', function () {
             updateTotal();
         });
