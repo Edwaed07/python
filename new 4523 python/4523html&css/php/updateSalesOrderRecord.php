@@ -127,32 +127,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br></br>
 
             <label>Dealer ID :</label>
-            <input type="text" name="DealerID" value="<?php echo $DealerID ?>">
+            <input type="text" name="DealerID" value="<?php echo $DealerID ?>" readonly>
             <br></br>
 
 
             <label>Sales Manager ID :</label>
-            <input type="text" name="SalesManagerID" value="<?php echo $SalesManagerID ?>">
+            <input type="text" name="SalesManagerID" value="<?php echo $SalesManagerID ?>" readonly>
             <br></br>
 
             <label>Manager’s Contact Name :</label>
-            <input type="text" name="SalesManagerContactName" value="<?php echo $SalesManagerContactName ?>">
+            <input type="text" name="SalesManagerContactName" value="<?php echo $SalesManagerContactName ?>" readonly>
             <br></br>
 
             <label>Manager’s Contact Number :</label>
-            <input type="text" name="SalesManagerNumber" value="<?php echo $SalesManagerNumber ?>">
+            <input type="text" name="SalesManagerNumber" value="<?php echo $SalesManagerNumber ?>" readonly>
             <br></br>
 
             <label>Order date and time:</label>
-            <input type="text" name="OrderDateAndTime" value="<?php echo $OrderDateAndTime ?>">
+            <input type="text" name="OrderDateAndTime" value="<?php echo $OrderDateAndTime ?>" readonly>
             <br></br>
 
             <label>Delivery address</label>
-            <textarea rows="5" cols="54" name="DeliveryAddress"><?php echo $DeliveryAddress; ?></textarea>
+            <textarea rows="5" cols="54" name="DeliveryAddress" readonly><?php echo $DeliveryAddress; ?></textarea>
             <br></br>
 
             <label>Delivery date</label>
-            <input type="text" name="DeliveryDate" value="<?php echo $DeliveryDate ?>">
+            <input type="text" name="DeliveryDate" value="<?php echo $DeliveryDate ?>" readonly>
             <br></br>
 
 
@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 onload="resizeIframe(this)"></iframe>
 
             <label>Shipping cost</label>
-            <input type="text" name="ShippingCost" value="<?php echo $ShippingCost ?>">
+            <input type="text" name="ShippingCost" value="<?php echo $ShippingCost ?>" readonly>
             <br></br>
 
             <label>Order status</label>
