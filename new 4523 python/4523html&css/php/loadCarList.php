@@ -128,7 +128,7 @@ if ($result->num_rows > 0) {
               </table>
           </div>
           <br><br>
-          <button onclick=\"placeOrder()\" class=\"green\">Order</button>
+          <button onclick=\"SendOrder()\" class=\"green\">Order</button>
       </div>";
     }
 } else {
