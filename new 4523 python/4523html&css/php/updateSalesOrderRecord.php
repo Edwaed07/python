@@ -29,18 +29,21 @@ if (isset($_GET['OrderID'])) {
     $OrderStatus = '<div class="radio-group">
                 <label><input type="radio" name="Status" value="accepted" required >accepted</label>
                 <label><input type="radio" name="Status" value="rejected" required>rejected</label>
+                <label><input type="radio" name="Status" value="Shipping" required>Shipping</label>
             </div>';
     if ($column["orderStatus"] == 'accepted') {
         $OrderStatus = '<div class="radio-group">
                 <label><input type="radio" name="Status" value="accepted" required checked>accepted</label>
                 <label><input type="radio" name="Status" value="rejected" required>rejected</label>
-            </div>';
+                <label><input type="radio" name="Status" value="Shipping" required>Shipping</label>
+                </div>';
     }
     if ($column["orderStatus"] == 'rejected') {
         $OrderStatus = '<div class="radio-group">
                 <label><input type="radio" name="Status" value="accepted" required>accepted</label>
                 <label><input type="radio" name="Status" value="rejected" required checked>rejected</label>
-            </div>';
+                <label><input type="radio" name="Status" value="Shipping" required>Shipping</label>
+                </div>';
     }
 
 
