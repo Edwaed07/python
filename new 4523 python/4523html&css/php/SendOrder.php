@@ -3,7 +3,7 @@
 
         // Get the item ID from the POST request
         $orderID = $_POST['orderID'];
-        $shipCost = $_POST['deliveryFee'];
+        $shipCost = $_POST['shipcost'];
 
         $servername = "127.0.0.1";
         $username = "root";
@@ -25,7 +25,7 @@
        // Prepare statement
        $stmt = $conn->prepare($sql);
        $orderStatus = 'WaitingForConfirm';
-       $stmt->bind_param('ss', $orderStatus, $shipCost);
+       $stmt->bind_param('si', $orderStatus, $shipCost);
        if ($stmt->execute()) {
             echo "send order successed";
             

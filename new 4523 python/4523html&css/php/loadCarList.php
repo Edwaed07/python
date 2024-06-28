@@ -128,12 +128,13 @@ if ($result->num_rows > 0) {
               </table>
           </div>
           <br><br>
-          <button onclick=\"SendOrder()\" class=\"green\">Order</button>
+          <button onclick=\"SendOrder(".$orderID.")\" class=\"green\">Order</button>
       </div>";
     }
 } else {
     echo "<h3>There is no item added into Car List</h3>";
 }
+
 ?>
 
 
@@ -174,8 +175,9 @@ if ($result->num_rows > 0) {
                         location.reload(); // Reload the page to reflect the changes
                     }
                 };
-
-                xhr.send('orderID=' + orderID);
+                var deliveryFee = parseFloat(document.getElementById('deliveryFee').textContent.replace('$ ', ''));
+                console.log(deliveryFee);
+                xhr.send('orderID=' + orderID + '&shipcost='+deliveryFee);
             }
         }
 
