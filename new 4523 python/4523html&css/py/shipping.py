@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
+import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -22,9 +23,11 @@ def ship_cost_api(mode, raw_value):
     else:
         if value > 70:
             return jsonify({"result": "rejected", "reason": "Maximum weight per package is 70kg"}), 400
-        cost = 300 + (max(value - 1, 0) * 50)
+        cost = 300 + (value - 1) * 50
 
     return jsonify({"result": "accepted", "cost": cost})
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080)
+    host = os.getenv('FLASK_RUN_HOST', '127.0.0.1')
+    port = int(os.getenv('FLASK_RUN_PORT', 8080))
+    app.run(host=host, port=port)
