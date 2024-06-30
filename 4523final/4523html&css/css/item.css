@@ -1,0 +1,39 @@
+.item {
+  width: 100%;
+  margin: 0 auto;
+  background-color: lightblue;
+}
+
+.itemList {
+  width: 100% padding 10px;
+  margin-top: -10px;
+  margin-bottom: -20px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+.order-table th,
+.order-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+
+}
+
+.order-table th {
+  background-color: #f2f2f2;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #525866;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

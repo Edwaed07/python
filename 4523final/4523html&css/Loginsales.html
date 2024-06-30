@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="css/Login.css" type="text/css">
+</head>
+
+<body>
+	<h2>Sales's Login</h2>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="php/salesSingUp.php" method="post">
+				<h1>Create Account</h1>
+				<input type="email" name="salesManagerID" placeholder="Sales Manager ID" required />
+				<input type="password" name="password" placeholder="Password" required />
+				<input type="text" name="managerName" placeholder="Manager Name" required />
+				<input type="text" name="contactName" placeholder="Contact Name" required />
+				<input type="tel" name="contactNumber" placeholder="Contact Number" required />
+				<button type="submit">Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="php/LoginS.php" method="post">
+				<h1>Sign in</h1>
+				<br></br>
+				<input type="email" placeholder="Account" name="email" />
+				<input type="password" placeholder="Password" name="passwd" />
+				<br></br>
+				<button type="submit">Sign In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Welcome Back!</h1>
+					<p>Already have an account, return to login</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Hello, User!</h1>
+					<p>Enter your personal details to create account</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const signUpButton = document.getElementById('signUp');
+		const signInButton = document.getElementById('signIn');
+		const container = document.getElementById('container');
+
+		signUpButton.addEventListener('click', () => {
+			container.classList.add("right-panel-active");
+		});
+
+		signInButton.addEventListener('click', () => {
+			container.classList.remove("right-panel-active");
+		});
+	</script>
+
+</body>
+
+</html>

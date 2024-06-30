@@ -1,0 +1,25 @@
+.order-detail {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.order-detail h1 {
+  font-size: 35px;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.order-detail p {
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.order-detail strong {
+  font-weight: bold;
+}
+
+.order-detail img {
+  margin-top: 10px;
+}
